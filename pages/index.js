@@ -41,7 +41,13 @@ export default function HomePage() {
             artworks.items.map((item) => (
               <li key={item.id}>
                 <h3>{item.titles[0].title}</h3>
-                <Image alt="titans">{item.image_thumbnail}</Image>
+                <p>{item.image_thumbnail}</p>
+                <Image
+                  src={item.image_thumbnail}
+                  alt="titans"
+                  height={300}
+                  width={300}
+                />
               </li>
             ))}
         </ul>
