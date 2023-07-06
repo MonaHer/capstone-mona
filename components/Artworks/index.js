@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import ArtworksPreview from "../ArtworksPreview/index.js";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -13,7 +14,7 @@ const fetcher = async (url) => {
   return res.json();
 };
 
-export default function Artworks() {
+export default function Artworks({ artworks }) {
   const { data, error, isLoading } = useSWR(
     "https://api.smk.dk/api/v1/art/?object_number=kms1&lang=en",
     fetcher
@@ -25,4 +26,14 @@ export default function Artworks() {
   if (isLoading) {
     return <div>loading...</div>;
   }
+
+  return (
+    <>
+      {artworks.map((artwork) => (
+        <li key={id}>
+          <ArtworksPreview image={imageSource} />
+        </li>
+      ))}
+    </>
+  );
 }
