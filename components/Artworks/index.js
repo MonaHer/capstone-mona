@@ -20,7 +20,7 @@ export default function Artworks() {
     error,
     isLoading,
   } = useSWR(
-    "https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&filters=[image_hq:true],[object_names:maleri],[public_domain:true]&offset=0&rows=2000",
+    "https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=dimensions&fields=current_location_name&fields=production&fields=production_date&fields=labels&filters=[image_hq:true],[object_names:maleri],[public_domain:true]&offset=0&rows=2000",
     fetcher
   );
 
@@ -30,6 +30,7 @@ export default function Artworks() {
   if (isLoading) {
     return <div>loading...</div>;
   }
+
   return (
     <>
       <ul>
@@ -42,6 +43,8 @@ export default function Artworks() {
                 height={300}
                 width={300}
               />
+              <p>Dimensions: {item.production_date_period}</p>
+              <p>Location: {item.current_location_name}</p>
             </li>
           ))}
       </ul>
