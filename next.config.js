@@ -4,7 +4,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ["iip-thumb.smk.dk"],
+    domains: ["api.smk.dk", "iip-thumb.smk.dk"],
   },
   reactStrictMode: true,
   webpack(config) {
