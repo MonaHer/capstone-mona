@@ -3,6 +3,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  images: {
+    domains: ["api.smk.dk", "iip-thumb.smk.dk"],
+  },
   reactStrictMode: true,
   webpack(config) {
     config.module.rules.push({
