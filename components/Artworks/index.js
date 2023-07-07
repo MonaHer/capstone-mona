@@ -1,5 +1,6 @@
-import useSWR from "swr";
 import Image from "next/image";
+import useSWR from "swr";
+import ArtworkInfo from "../ArtworkInfo/index.js";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
