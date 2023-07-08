@@ -22,7 +22,7 @@ export default function Artworks() {
     error,
     isLoading,
   } = useSWR(
-    "https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=dimensions&fields=current_location_name&fields=production&fields=production_date&fields=labels&filters=[image_hq:true],[object_names:maleri],[public_domain:true]&offset=0&rows=2000",
+    "https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=0&rows=2000&lang=en",
     fetcher
   );
 
@@ -48,7 +48,9 @@ export default function Artworks() {
                   width={300}
                 />
                 <p>
-                  Title: {item.titles[0].title},{item.production_date[0].period}
+                  Title: {item.titles[0].title},
+                  {item.production_dates_notes &&
+                    item.production_dates_notes[0]}
                 </p>
                 <p>
                   Creator: {item.production[0].creator_forename}{" "}
@@ -65,11 +67,11 @@ export default function Artworks() {
                   📐
                   {item.dimensions && item.dimensions[0]
                     ? item.dimensions[0].value
-                    : ""}{" "}
-                  x{" "}
+                    : ""}
+                  x
                   {item.dimensions && item.dimensions[1]
                     ? item.dimensions[1].value
-                    : ""}{" "}
+                    : ""}
                   cm
                 </p>
                 <p>📍 {item.current_location_name}</p>
@@ -83,5 +85,3 @@ export default function Artworks() {
     )
   );
 }
-
-/*{item.dimensions[0].value}*/
