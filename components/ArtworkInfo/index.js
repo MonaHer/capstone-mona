@@ -1,11 +1,11 @@
 import Artworks from "../Artworks/index.js";
 import Image from "next/image";
 
-export default function ArtworkInfo({ artworks }) {
+export default function ArtworkInfo({ item }) {
   return (
     <>
       <Image
-        src={artworks.image_thumbnail}
+        src={item.image_thumbnail}
         alt={item.title}
         height={300}
         width={300}
