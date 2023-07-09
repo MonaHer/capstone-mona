@@ -1,5 +1,5 @@
 import ArtworkInfo from "@/components/ArtworkInfo";
-import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function ArtworkInfoPage({ artworks }) {
   /*const router = useRouter();
@@ -14,6 +14,7 @@ export default function ArtworkInfoPage({ artworks }) {
   }*/
   return (
     <>
+      <Link href={`/`}>Go back to Artworkslist</Link>
       <h1>ArtworkInfoPage</h1>
       <ArtworkInfo artworks={artworks} />
     </>
