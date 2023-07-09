@@ -1,4 +1,3 @@
-import Artworks from "../Artworks/index.js";
 import Image from "next/image";
 
 export default function ArtworkInfo({ item }) {
