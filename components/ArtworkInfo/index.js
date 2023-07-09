@@ -7,7 +7,7 @@ export default function ArtworkInfo({ artworks }) {
       <>
         <ul>
           {artworks &&
-            artworks.items.map((item) => {
+            artworks.items.map(({ id, ...item }) => {
               const productionDatesNotes =
                 item.production_dates_notes && item.production_dates_notes[0];
               const prefix = "Værkdatering: ";
@@ -15,8 +15,9 @@ export default function ArtworkInfo({ artworks }) {
                 productionDatesNotes && productionDatesNotes.startsWith(prefix)
                   ? productionDatesNotes.slice(prefix.length)
                   : productionDatesNotes;
+
               return (
-                <li key={item.id}>
+                <li key={id}>
                   <Image
                     src={item.image_thumbnail}
                     alt={item.title}

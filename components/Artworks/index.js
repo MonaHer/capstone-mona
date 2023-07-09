@@ -8,9 +8,9 @@ export default function Artworks({ artworks }) {
       <>
         <ul>
           {artworks &&
-            artworks.items.map((item) => (
-              <li key={item.id}>
-                <Link href={`/artwork-info/artwork-info`}>
+            artworks.items.map(({ id, ...item }) => (
+              <li key={id}>
+                <Link href={`/artwork-info/${id}`}>
                   <Image
                     src={item.image_thumbnail}
                     alt={item.title}
