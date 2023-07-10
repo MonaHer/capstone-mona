@@ -15,7 +15,7 @@ export default function ArtworkInfoPage({ artworks }) {
     <>
       <Link href={`/`}>Go back to Artworkslist</Link>
       <h1>ArtworkInfoPage</h1>
-      <ArtworkInfo artworks={{ items: [currentArtworkInfo] }} />
+      <ArtworkInfo artwork={currentArtworkInfo} />
     </>
   );
 }
