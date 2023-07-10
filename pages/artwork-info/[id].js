@@ -1,4 +1,4 @@
-import ArtworkInfo from "@/components/ArtworkInfo";
+import ArtworkInfo from "@/components/ArtworkInfo/index.js";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -16,10 +16,7 @@ export default function ArtworkInfoPage({ artworks }) {
       <Link href={`/`}>Go back to Artworkslist</Link>
       <h1>ArtworkInfoPage</h1>
       <p>{currentArtworkInfo.titles[0].title}</p>
-      <ArtworkInfo
-        image={currentArtworkInfo.image_thumbnail}
-        title={currentArtworkInfo.titles[0].title}
-      />
+      <ArtworkInfo artworks={{ items: [currentArtworkInfo] }} />
     </>
   );
 }
