@@ -15,7 +15,6 @@ export default function ArtworkInfoPage({ artworks }) {
     <>
       <Link href={`/`}>Go back to Artworkslist</Link>
       <h1>ArtworkInfoPage</h1>
-      <p>{currentArtworkInfo.titles[0].title}</p>
       <ArtworkInfo artworks={{ items: [currentArtworkInfo] }} />
     </>
   );
