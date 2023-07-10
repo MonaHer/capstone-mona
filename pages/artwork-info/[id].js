@@ -1,7 +1,6 @@
 import ArtworkInfo from "@/components/ArtworkInfo";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Image from "next/image";
 
 export default function ArtworkInfoPage({ artworks }) {
   const router = useRouter();
@@ -11,15 +10,15 @@ export default function ArtworkInfoPage({ artworks }) {
   if (!currentArtworkInfo) {
     return null;
   }
+
   return (
     <>
       <Link href={`/`}>Go back to Artworkslist</Link>
       <h1>ArtworkInfoPage</h1>
-      <Image
-        src={currentArtworkInfo.image_thumbnail}
-        alt={currentArtworkInfo.title}
-        height={300}
-        width={300}
+      <p>{currentArtworkInfo.titles[0].title}</p>
+      <ArtworkInfo
+        image={currentArtworkInfo.image_thumbnail}
+        title={currentArtworkInfo.titles[0].title}
       />
     </>
   );
