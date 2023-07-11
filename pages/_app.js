@@ -36,20 +36,20 @@ export default function App({ Component, pageProps }) {
     return <div>loading...</div>;
   }
 
-  function handleNextPage() {
-    setOffset((prevOffset) => prevOffset + rowsPerPage);
-    mutate(
-      `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${
-        offset + rowsPerPage
-      }&rows=${rowsPerPage}&lang=en`
-    );
-  }
-
   function handlePreviousPage() {
     setOffset((prevOffset) => prevOffset - rowsPerPage);
     mutate(
       `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${
         offset - rowsPerPage
+      }&rows=${rowsPerPage}&lang=en`
+    );
+  }
+
+  function handleNextPage() {
+    setOffset((prevOffset) => prevOffset + rowsPerPage);
+    mutate(
+      `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${
+        offset + rowsPerPage
       }&rows=${rowsPerPage}&lang=en`
     );
   }
@@ -68,8 +68,3 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
-
-//
-//         `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${
-//           offset + rowsPerPage
-//         }&rows=${rowsPerPage}&lang=en`
