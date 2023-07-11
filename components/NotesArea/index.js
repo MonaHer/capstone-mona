@@ -21,22 +21,10 @@ export default function NotesArea({ note, onNoteChange }) {
         id="personal-notes"
         value={note}
         onChange={(e) => onNoteChange(e.target.value)}
-        rows={10}
+        rows={5}
         onInput={adjustTextareaHeight}
         onHandleTextAreaValue={handleTextAreaValue}
       />
     </>
   );
 }
-
-// const [rows, setRows] = useLocalStorageState(10);
-//   const textareaLineHeight = 24;
-//   const previousRows = e.target.rows;
-//   e.target.rows = 1;
-//   const currentRows = Math.ceil(e.target.scrollHeight / textareaLineHeight);
-//   e.target.rows = previousRows;
-// if (currentRows !== previousRows) {
-//   setRows(currentRows);
-// }
-
-//

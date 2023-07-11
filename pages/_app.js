@@ -19,7 +19,7 @@ const fetcher = async (url) => {
 export default function App({ Component, pageProps }) {
   const [offset, setOffset] = useState(0);
   const rowsPerPage = 20;
-  const [note, setNote] = useLocalStorageState("");
+  const [note, setNote] = useLocalStorageState("note", { defaultValue: 0 });
 
   const {
     data: artworks,
