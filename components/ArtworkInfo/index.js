@@ -2,7 +2,6 @@ import Image from "next/image";
 
 export default function ArtworkInfo({ artwork }) {
   const {
-    id,
     image_thumbnail,
     production,
     dimensions,
@@ -25,7 +24,6 @@ export default function ArtworkInfo({ artwork }) {
   )}-${creator_date_of_death.slice(0, 4)}`;
 
   const dimension1 = dimensions[0].value;
-
   const dimension2 = dimensions[1].value;
 
   const titleText = titles[0].title;
@@ -56,11 +54,3 @@ export default function ArtworkInfo({ artwork }) {
     </>
   );
 }
-
-// const productionDatesNotes =
-//     production_dates_notes && production_dates_notes[0];
-//   const prefix = "Værkdatering: ";
-//   const formattedProductionDatesNotes =
-//     productionDatesNotes && productionDatesNotes.startsWith(prefix)
-//       ? productionDatesNotes.slice(prefix.length)
-//       : productionDatesNotes;

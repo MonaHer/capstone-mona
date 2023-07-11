@@ -1,14 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 export default function ArtworksList({ artworks }) {
   return (
     <>
       <ul>
         {artworks.items.map(({ id, image_thumbnail, titles }) => {
-          const titleText =
-            titles && titles[0] && titles[0].title ? titles[0].title : "";
+          const titleText = titles[0].title;
           return (
             <li key={id}>
               <Link href={`/artwork-info/${id}`}>
