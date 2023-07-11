@@ -1,12 +1,4 @@
-import useLocalStorageState from "use-local-storage-state";
-
-export default function NotesArea() {
-  const [note, setNote] = useLocalStorageState("");
-
-  function handleNoteChange(newNote) {
-    setNote(newNote);
-  }
-
+export default function NotesArea({ note, onNoteChange }) {
   return (
     <>
       <label for="personal-notes">My Notes</label>
@@ -20,3 +12,13 @@ export default function NotesArea() {
     </>
   );
 }
+
+// const [rows, setRows] = useLocalStorageState(10);
+//   const textareaLineHeight = 24;
+//   const previousRows = e.target.rows;
+//   e.target.rows = 1;
+//   const currentRows = Math.ceil(e.target.scrollHeight / textareaLineHeight);
+//   e.target.rows = previousRows;
+// if (currentRows !== previousRows) {
+//   setRows(currentRows);
+// }
