@@ -1,6 +1,7 @@
 import GlobalStyle from "../styles";
 import useSWR from "swr";
 import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -18,6 +19,7 @@ const fetcher = async (url) => {
 export default function App({ Component, pageProps }) {
   const [offset, setOffset] = useState(0);
   const rowsPerPage = 20;
+  const [note, setNote] = useLocalStorageState("");
 
   const {
     data: artworks,
@@ -54,6 +56,10 @@ export default function App({ Component, pageProps }) {
     );
   }
 
+  function handleNoteChange(newNote) {
+    setNote(newNote);
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -64,6 +70,8 @@ export default function App({ Component, pageProps }) {
         onHandleNextPage={handleNextPage}
         offset={offset}
         rowsPerPage={rowsPerPage}
+        note={note}
+        onNoteChange={handleNoteChange}
       />
     </>
   );
