@@ -18,4 +18,3 @@ export default function HomePage({
     </>
   );
 }
-console.log("hallo");
