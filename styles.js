@@ -8,8 +8,12 @@ export default createGlobalStyle`
   }
 
   body {
-    margin: 0;
+    
     font-family: system-ui;
+    background-color: #282830;
+    position: relative;
+    margin: 0px;
+    
 
   }
 `;

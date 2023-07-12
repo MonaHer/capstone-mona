@@ -11,11 +11,11 @@ export default function ArtworksList({ artworks }) {
           return (
             <li key={id}>
               <Link href={`/artwork-info/${id}`}>
-                <Image
+                <StyledImage
                   src={image_thumbnail}
                   alt={titleText}
-                  height={300}
-                  width={300}
+                  width={200}
+                  height={200}
                 />
               </Link>
             </li>
@@ -28,4 +28,10 @@ export default function ArtworksList({ artworks }) {
 
 const StyledList = styled.ul`
   list-style-type: none;
+  margin: 20px;
+`;
+
+const StyledImage = styled(Image)`
+  height: 100%;
+  width: 100%;
 `;

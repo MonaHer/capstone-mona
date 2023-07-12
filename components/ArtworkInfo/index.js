@@ -1,4 +1,5 @@
 import Image from "next/image";
+import styled from "styled-components";
 
 export default function ArtworkInfo({ artwork }) {
   const {
@@ -36,8 +37,13 @@ export default function ArtworkInfo({ artwork }) {
     : productionDatesNotes;
 
   return (
-    <>
-      <Image src={image_thumbnail} alt={titleText} height={300} width={300} />
+    <ArtworkContainer>
+      <StyledImage
+        src={image_thumbnail}
+        alt={titleText}
+        height={300}
+        width={300}
+      />
       <p>
         Title: {titleText},{formattedProductionDatesNotes}
       </p>
@@ -51,6 +57,16 @@ export default function ArtworkInfo({ artwork }) {
       </p>
       <p>📍 {current_location_name}</p>
       <p>{labelText}</p>
-    </>
+    </ArtworkContainer>
   );
 }
+
+const ArtworkContainer = styled.div`
+  position: relative;
+  margin: 20px;
+`;
+
+const StyledImage = styled(Image)`
+  height: 100%;
+  width: 100%;
+`;
