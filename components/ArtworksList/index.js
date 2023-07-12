@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import styled from "styled-components";
 
 export default function ArtworksList({ artworks }) {
   return (
     <>
-      <ul>
+      <StyledList>
         {artworks.items.map(({ id, image_thumbnail, titles }) => {
           const titleText = titles[0].title;
           return (
@@ -20,7 +21,11 @@ export default function ArtworksList({ artworks }) {
             </li>
           );
         })}
-      </ul>
+      </StyledList>
     </>
   );
 }
+
+const StyledList = styled.ul`
+  list-style-type: none;
+`;
