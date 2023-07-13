@@ -1,7 +1,13 @@
 import Image from "next/image";
 import styled from "styled-components";
+import { useState } from "react";
 
 export default function ArtworkInfo({ artwork }) {
+  const [isLabelTextVisible, setIsLabelTextVisible] = useState(false);
+
+  const toggleLabelText = function () {
+    setIsLabelTextVisible(!isLabelTextVisible);
+  };
   const {
     image_thumbnail,
     production,
@@ -56,7 +62,10 @@ export default function ArtworkInfo({ artwork }) {
         cm
       </p>
       <p>Location: {current_location_name}</p>
-      <StyledLabelText>{labelText}</StyledLabelText>
+      {!!labelText && <button onClick={toggleLabelText}>Show Text</button>}
+      {isLabelTextVisible && !!labelText && (
+        <StyledLabelText>{labelText}</StyledLabelText>
+      )}
     </ArtworkContainer>
   );
 }
