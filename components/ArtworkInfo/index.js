@@ -41,8 +41,8 @@ export default function ArtworkInfo({ artwork }) {
       <StyledImage
         src={image_thumbnail}
         alt={titleText}
-        height={300}
-        width={300}
+        height={200}
+        width={200}
       />
       <p>
         Title: {titleText},{formattedProductionDatesNotes}
@@ -51,12 +51,12 @@ export default function ArtworkInfo({ artwork }) {
         Creator: {creator_forename} {creator_surname},{creatorLifeDates}
       </p>
       <p>
-        📐
+        Dimensions:
         {dimension1}x{dimension2}
         cm
       </p>
-      <p>📍 {current_location_name}</p>
-      <p>{labelText}</p>
+      <p>Location: {current_location_name}</p>
+      <StyledLabelText>{labelText}</StyledLabelText>
     </ArtworkContainer>
   );
 }
@@ -69,4 +69,8 @@ const ArtworkContainer = styled.div`
 const StyledImage = styled(Image)`
   height: 100%;
   width: 100%;
+`;
+
+const StyledLabelText = styled.p`
+  text-align: justify;
 `;

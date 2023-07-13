@@ -9,7 +9,7 @@ export default function ArtworksList({ artworks }) {
         {artworks.items.map(({ id, image_thumbnail, titles }) => {
           const titleText = titles[0].title;
           return (
-            <li key={id}>
+            <StyledListItem key={id}>
               <Link href={`/artwork-info/${id}`}>
                 <StyledImage
                   src={image_thumbnail}
@@ -18,7 +18,7 @@ export default function ArtworksList({ artworks }) {
                   height={200}
                 />
               </Link>
-            </li>
+            </StyledListItem>
           );
         })}
       </StyledList>
@@ -28,10 +28,14 @@ export default function ArtworksList({ artworks }) {
 
 const StyledList = styled.ul`
   list-style-type: none;
-  margin: 20px;
+  padding: 0;
 `;
 
 const StyledImage = styled(Image)`
-  height: 100%;
-  width: 100%;
+  height: 90%;
+  width: 90%;
+`;
+
+const StyledListItem = styled.li`
+  text-align: center;
 `;

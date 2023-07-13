@@ -10,8 +10,10 @@ export default createGlobalStyle`
   body {
     
     font-family: system-ui;
-    background-color: #282830;
+    background-color: #000000;
+    color: #E8D7BC;
     position: relative;
+  
     margin: 0px;
     
 
