@@ -62,8 +62,10 @@ export default function ArtworkInfo({ artwork }) {
         cm
       </p>
       <p>Location: {current_location_name}</p>
-      {!!labelText && <button onClick={toggleLabelText}>Show Text</button>}
-      {isLabelTextVisible && !!labelText && (
+      {labelText.length > 0 && (
+        <button onClick={toggleLabelText}>Show Text</button>
+      )}
+      {isLabelTextVisible && labelText.length > 0 && (
         <StyledLabelText>{labelText}</StyledLabelText>
       )}
     </ArtworkContainer>
@@ -82,4 +84,5 @@ const StyledImage = styled(Image)`
 
 const StyledLabelText = styled.p`
   text-align: justify;
+  line-height: 20px;
 `;
