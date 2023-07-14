@@ -17,9 +17,10 @@ const fetcher = async (url) => {
 };
 
 export default function App({ Component, pageProps }) {
-  const [offset, setOffset] = useState(0);
   const rowsPerPage = 20;
+  const [offset, setOffset] = useState(0);
   const [note, setNote] = useLocalStorageState("note", { defaultValue: 0 });
+  const [allArtworks, setAllArtworks] = useState([]);
 
   const {
     data: artworks,
@@ -27,8 +28,15 @@ export default function App({ Component, pageProps }) {
     isLoading,
     mutate,
   } = useSWR(
-    `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${offset}&rows=${rowsPerPage}&lang=en`,
-    fetcher
+    `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${offset}&rows=1810&lang=en`,
+    fetcher,
+    async (url) => {
+      const res = await fetch(url);
+      const data = await res.json();
+      const newArtworks = [...allArtworks, ...data.items];
+      setAllArtworks(newArtworks);
+      return data;
+    }
   );
 
   if (error) {
@@ -40,6 +48,7 @@ export default function App({ Component, pageProps }) {
 
   function handlePreviousPage() {
     setOffset((prevOffset) => prevOffset - rowsPerPage);
+
     mutate(
       `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${
         offset - rowsPerPage
@@ -49,6 +58,7 @@ export default function App({ Component, pageProps }) {
 
   function handleNextPage() {
     setOffset((prevOffset) => prevOffset + rowsPerPage);
+
     mutate(
       `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${
         offset + rowsPerPage
@@ -58,6 +68,31 @@ export default function App({ Component, pageProps }) {
 
   function handleNoteChange(newNote) {
     setNote(newNote);
+  }
+
+  function searchAllArtworks(value) {
+    const allArtworks = artworks.items;
+    const filteredArtworks = artworks.items.filter((artwork) => {
+      const titleMatch = artwork.titles[0]?.title.toString
+        ?.toString()
+        ?.toLowerCase()
+        .includes(value.toLowerCase());
+      const creatorMatch =
+        artwork.production[0]?.creator_forename
+          ?.toString()
+          ?.toLowerCase()
+          .includes(value.toLowerCase()) ||
+        artwork.production[0]?.creator_surname
+          ?.toString()
+          ?.toLowerCase()
+          .includes(value.toLowerCase()) ||
+        `${artwork.production[0]?.creator_forename} ${artwork.production[0]?.creator_surname}`
+          ?.toString()
+          ?.toLowerCase()
+          .includes(value.toLowerCase());
+      return titleMatch || creatorMatch;
+    });
+    return filteredArtworks;
   }
 
   return (
@@ -72,6 +107,7 @@ export default function App({ Component, pageProps }) {
         rowsPerPage={rowsPerPage}
         note={note}
         onNoteChange={handleNoteChange}
+        searchAllArtworks={searchAllArtworks}
       />
     </>
   );

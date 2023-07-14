@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function SearchBar({ artworks }) {
+export default function SearchBar({ artworks, searchAllArtworks }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
@@ -14,27 +14,9 @@ export default function SearchBar({ artworks }) {
     if (value === "") {
       setSearchResults([]);
     } else {
-      handleSearch(value);
+      searchAllArtworks(value);
     }
-  }
-
-  function handleSearch(value) {
-    const filteredArtworks = artworks.items.filter((artwork) => {
-      const titleMatch = artwork.titles[0].title
-        .toLowerCase()
-        .includes(value.toLowerCase());
-      const creatorMatch =
-        artwork.production[0].creator_forename
-          .toLowerCase()
-          .includes(value.toLowerCase()) ||
-        artwork.production[0].creator_surname
-          .toLowerCase()
-          .includes(value.toLowerCase()) ||
-        `${artwork.production[0].creator_forename} ${artwork.production[0].creator_surname}`
-          .toLowerCase()
-          .includes(value.toLowerCase());
-      return titleMatch || creatorMatch;
-    });
+    const filteredArtworks = searchAllArtworks(value);
     setSearchResults(filteredArtworks);
     setSearchPerformed(true);
   }
@@ -84,4 +66,25 @@ const StyledListItem = styled.li`
 // {searchPerformed && searchResults.length === 0 && (
 // <p>No results found.</p>
 // )} */
+// }
+
+//  // function handleSearch(value) {
+//   //   const filteredArtworks = artworks.items.filter((artwork) => {
+//   //     const titleMatch = artwork.titles[0].title
+//   //       .toLowerCase()
+//   //       .includes(value.toLowerCase());
+//   //     const creatorMatch =
+//   //       artwork.production[0].creator_forename
+//   //         .toLowerCase()
+//   //         .includes(value.toLowerCase()) ||
+//   //       artwork.production[0].creator_surname
+//   //         .toLowerCase()
+//   //         .includes(value.toLowerCase()) ||
+//   //       `${artwork.production[0].creator_forename} ${artwork.production[0].creator_surname}`
+//   //         .toLowerCase()
+//   //         .includes(value.toLowerCase());
+//   //     return titleMatch || creatorMatch;
+//   //   });
+//   setSearchResults(filteredArtworks);
+
 // }
