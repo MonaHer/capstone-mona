@@ -5,13 +5,30 @@ import Image from "next/image";
 import useLocalStorageState from "use-local-storage-state";
 
 export default function SearchBar({ artworks }) {
-  const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm", "");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm", {
+    defaultValue: "",
+  });
+  const [searchResults, setSearchResults] = useLocalStorageState(
+    "searchResults",
+    { defaultValue: [] }
+  );
+
   const [searchPerformed, setSearchPerformed] = useState(false);
 
-  function searchAllArtworks(value) {
-    const allArtworks = artworks.items;
+  function handleInputChange(e) {
+    const { value } = e.target;
+    setSearchTerm(value);
+    if (value === "") {
+      setSearchResults([]);
+      setSearchPerformed(false);
+    } else {
+      const filteredArtworks = searchAllArtworks(value);
+      setSearchResults(filteredArtworks);
+      setSearchPerformed(true);
+    }
+  }
 
+  function searchAllArtworks(value) {
     const filteredArtworks = artworks.items.filter((artwork) => {
       const titleMatch = artwork.titles.some((title) =>
         title.title?.toString()?.toLowerCase().includes(value.toLowerCase())
@@ -34,25 +51,8 @@ export default function SearchBar({ artworks }) {
     return filteredArtworks;
   }
 
-  function handleInputChange(e) {
-    const { value } = e.target;
-    setSearchTerm(value);
-    if (value === "") {
-      setSearchResults([]);
-      setSearchPerformed(false);
-    } else {
-      const filteredArtworks = searchAllArtworks(value);
-      setSearchResults(filteredArtworks);
-      setSearchPerformed(true);
-    }
-
-    const filteredArtworks = searchAllArtworks(value);
-    setSearchResults(filteredArtworks);
-    setSearchPerformed(true);
-  }
-
   const isNoSearchTerm = searchTerm === "";
-
+  console.log("searchresult", searchResults);
   return (
     <>
       <input type="text" value={searchTerm} onChange={handleInputChange} />

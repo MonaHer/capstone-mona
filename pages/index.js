@@ -1,5 +1,4 @@
 import ArtworksList from "@/components/ArtworksList/index.js";
-import SearchBar from "@/components/SearchBar/index.js";
 
 export default function HomePage({
   artworks,
