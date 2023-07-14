@@ -73,10 +73,9 @@ export default function App({ Component, pageProps }) {
   function searchAllArtworks(value) {
     const allArtworks = artworks.items;
     const filteredArtworks = artworks.items.filter((artwork) => {
-      const titleMatch = artwork.titles[0]?.title.toString
-        ?.toString()
-        ?.toLowerCase()
-        .includes(value.toLowerCase());
+      const titleMatch = artwork.titles.some((title) =>
+        title.title?.toString()?.toLowerCase().includes(value.toLowerCase())
+      );
       const creatorMatch =
         artwork.production[0]?.creator_forename
           ?.toString()

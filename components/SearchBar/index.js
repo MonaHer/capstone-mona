@@ -16,6 +16,7 @@ export default function SearchBar({ artworks, searchAllArtworks }) {
     } else {
       searchAllArtworks(value);
     }
+
     const filteredArtworks = searchAllArtworks(value);
     setSearchResults(filteredArtworks);
     setSearchPerformed(true);
@@ -87,4 +88,9 @@ const StyledListItem = styled.li`
 //   //   });
 //   setSearchResults(filteredArtworks);
 
+// }
+
+// } else {
+//   const filteredArtworks = searchAllArtworks(value);
+//   setSearchResults(filteredArtworks);
 // }
