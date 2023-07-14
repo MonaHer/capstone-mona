@@ -70,30 +70,6 @@ export default function App({ Component, pageProps }) {
     setNote(newNote);
   }
 
-  function searchAllArtworks(value) {
-    const allArtworks = artworks.items;
-    const filteredArtworks = artworks.items.filter((artwork) => {
-      const titleMatch = artwork.titles.some((title) =>
-        title.title?.toString()?.toLowerCase().includes(value.toLowerCase())
-      );
-      const creatorMatch =
-        artwork.production[0]?.creator_forename
-          ?.toString()
-          ?.toLowerCase()
-          .includes(value.toLowerCase()) ||
-        artwork.production[0]?.creator_surname
-          ?.toString()
-          ?.toLowerCase()
-          .includes(value.toLowerCase()) ||
-        `${artwork.production[0]?.creator_forename} ${artwork.production[0]?.creator_surname}`
-          ?.toString()
-          ?.toLowerCase()
-          .includes(value.toLowerCase());
-      return titleMatch || creatorMatch;
-    });
-    return filteredArtworks;
-  }
-
   return (
     <>
       <GlobalStyle />
@@ -106,7 +82,6 @@ export default function App({ Component, pageProps }) {
         rowsPerPage={rowsPerPage}
         note={note}
         onNoteChange={handleNoteChange}
-        searchAllArtworks={searchAllArtworks}
       />
     </>
   );
