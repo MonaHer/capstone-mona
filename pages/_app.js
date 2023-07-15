@@ -58,7 +58,6 @@ export default function App({ Component, pageProps }) {
       }&rows=${rowsPerPage}&lang=en`
     );
   }
-  console.log(rowsPerPage);
   function handleNoteChange(newNote) {
     setNote(newNote);
   }

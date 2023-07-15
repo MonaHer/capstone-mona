@@ -54,7 +54,6 @@ export default function SearchBar({ artworks }) {
   }
 
   const isNoSearchTerm = searchTerm === "";
-  console.log("searchresult", searchResults);
   return (
     <>
       <StyledMagnifyIcon path={mdiMagnify} size={1} />
