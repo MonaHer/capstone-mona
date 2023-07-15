@@ -26,6 +26,7 @@ export default function ArtworkInfoPage({ artworks }) {
   return (
     <>
       <Link href={`/`}>Go back to Artworkslist</Link>
+      <Link href={`/search`}>Go back to search</Link>
       <h1>ArtworkInfoPage</h1>
       <ArtworkInfo artwork={currentArtworkInfo} />
       <NotesArea note={note} onNoteChange={handleNoteChange} />

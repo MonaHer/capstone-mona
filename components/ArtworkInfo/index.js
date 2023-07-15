@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function ArtworkInfo({ artwork }) {
   const [isLabelTextVisible, setIsLabelTextVisible] = useState(false);
@@ -56,12 +57,16 @@ export default function ArtworkInfo({ artwork }) {
       <p>
         Creator: {creator_forename} {creator_surname},{creatorLifeDates}
       </p>
-      <p>
-        Dimensions:
-        {dimension1}x{dimension2}
-        cm
-      </p>
-      <p>Location: {current_location_name}</p>
+      {dimension1.length > 0 && (
+        <p>
+          Dimensions:
+          {dimension1}x{dimension2}
+          cm
+        </p>
+      )}
+      {current_location_name && current_location_name.length > 0 && (
+        <p>Location: {current_location_name}</p>
+      )}
       {labelText.length > 0 && (
         <button onClick={toggleLabelText}>Show Text</button>
       )}

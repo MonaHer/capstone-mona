@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 import useLocalStorageState from "use-local-storage-state";
+import Icon from "@mdi/react";
+import { mdiMagnify } from "@mdi/js";
 
 export default function SearchBar({ artworks }) {
   const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm", {
@@ -55,7 +57,15 @@ export default function SearchBar({ artworks }) {
   console.log("searchresult", searchResults);
   return (
     <>
-      <input type="text" value={searchTerm} onChange={handleInputChange} />
+      <StyledMagnifyIcon path={mdiMagnify} size={1} />
+
+      <StyledSearchInput
+        type="text"
+        value={searchTerm}
+        onChange={handleInputChange}
+        placeholder="Search.."
+      />
+
       {!isNoSearchTerm && searchResults.length > 0 && (
         <StyledList>
           {searchResults.map(({ id, image_thumbnail, titleText }) => {
@@ -94,4 +104,15 @@ const StyledImage = styled(Image)`
 
 const StyledListItem = styled.li`
   text-align: center;
+`;
+
+const StyledSearchInput = styled.input`
+  position: absolute;
+  background-color: transparent;
+`;
+
+const StyledMagnifyIcon = styled(Icon)`
+  position: relative;
+  left: 150px;
+  top: -1px;
 `;
