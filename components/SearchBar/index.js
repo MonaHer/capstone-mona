@@ -17,8 +17,8 @@ export default function SearchBar({ artworks }) {
 
   const [searchPerformed, setSearchPerformed] = useState(false);
 
-  function handleInputChange(e) {
-    const { value } = e.target;
+  function handleInputChange(event) {
+    const { value } = event.target;
     setSearchTerm(value);
     if (value === "") {
       setSearchResults([]);

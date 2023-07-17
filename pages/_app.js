@@ -61,7 +61,6 @@ export default function App({ Component, pageProps }) {
   function handleNoteChange(newNote) {
     setNote(newNote);
   }
-  console.log(artworks);
 
   return (
     <>
@@ -79,13 +78,3 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
-
-// const [allArtworks, setAllArtworks] = useState([]);
-
-// async (url) => {
-//   const res = await fetch(url);
-//   const data = await res.json();
-//   const newArtworks = [...allArtworks, ...data.items];
-//   setAllArtworks(newArtworks);
-//   return data;
-// }

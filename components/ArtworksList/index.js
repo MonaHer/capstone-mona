@@ -10,7 +10,7 @@ export default function ArtworksList({ artworks }) {
         return (
           <StyledListItem key={id}>
             <Link href={`/artwork-info/${id}`}>
-              <StyledImage
+              <StyledImageList
                 src={image_thumbnail}
                 alt={titleText}
                 width={200}
@@ -29,7 +29,7 @@ const StyledList = styled.ul`
   padding: 0;
 `;
 
-const StyledImage = styled(Image)`
+const StyledImageList = styled(Image)`
   height: 90%;
   width: 90%;
 `;

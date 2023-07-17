@@ -45,7 +45,7 @@ export default function ArtworkInfo({ artwork }) {
 
   return (
     <ArtworkContainer>
-      <StyledImage
+      <StyledImageInfo
         src={image_thumbnail}
         alt={titleText}
         height={200}
@@ -82,7 +82,7 @@ const ArtworkContainer = styled.div`
   margin: 20px;
 `;
 
-const StyledImage = styled(Image)`
+const StyledImageInfo = styled(Image)`
   height: 100%;
   width: 100%;
 `;
