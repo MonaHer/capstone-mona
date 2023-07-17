@@ -1,6 +1,14 @@
 import Image from "next/image";
+import styled from "styled-components";
+import { useState } from "react";
+import Link from "next/link";
 
 export default function ArtworkInfo({ artwork }) {
+  const [isLabelTextVisible, setIsLabelTextVisible] = useState(false);
+
+  const toggleLabelText = function () {
+    setIsLabelTextVisible(!isLabelTextVisible);
+  };
   const {
     image_thumbnail,
     production,
@@ -36,21 +44,50 @@ export default function ArtworkInfo({ artwork }) {
     : productionDatesNotes;
 
   return (
-    <>
-      <Image src={image_thumbnail} alt={titleText} height={300} width={300} />
+    <ArtworkContainer>
+      <StyledImageInfo
+        src={image_thumbnail}
+        alt={titleText}
+        height={200}
+        width={200}
+      />
       <p>
         Title: {titleText},{formattedProductionDatesNotes}
       </p>
       <p>
         Creator: {creator_forename} {creator_surname},{creatorLifeDates}
       </p>
-      <p>
-        📐
-        {dimension1}x{dimension2}
-        cm
-      </p>
-      <p>📍 {current_location_name}</p>
-      <p>{labelText}</p>
-    </>
+      {dimension1.length > 0 && (
+        <p>
+          Dimensions:
+          {dimension1}x{dimension2}
+          cm
+        </p>
+      )}
+      {current_location_name && current_location_name.length > 0 && (
+        <p>Location: {current_location_name}</p>
+      )}
+      {labelText.length > 0 && (
+        <button onClick={toggleLabelText}>Show Text</button>
+      )}
+      {isLabelTextVisible && labelText.length > 0 && (
+        <StyledLabelText>{labelText}</StyledLabelText>
+      )}
+    </ArtworkContainer>
   );
 }
+
+const ArtworkContainer = styled.div`
+  position: relative;
+  margin: 20px;
+`;
+
+const StyledImageInfo = styled(Image)`
+  height: 100%;
+  width: 100%;
+`;
+
+const StyledLabelText = styled.p`
+  text-align: justify;
+  line-height: 20px;
+`;
