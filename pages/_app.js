@@ -22,6 +22,9 @@ export default function App({ Component, pageProps }) {
   const [offset, setOffset] = useState(0);
   const [note, setNote] = useLocalStorageState("note", { defaultValue: 0 });
   const [textAreaValue, setTextAreaValue] = useState("");
+  const [artworksInfo, setArtworksInfo] = useLocalStorageState("artworksInfo", {
+    defaultValue: [],
+  });
 
   const {
     data: artworks,
@@ -67,6 +70,19 @@ export default function App({ Component, pageProps }) {
     setTextAreaValue(event.target.value);
   };
 
+  function handleToggleFavorite(id) {
+    setArtworksInfo((artworksInfo) => {
+      const info = artworksInfo.find((info) => info.id === id);
+      if (info) {
+        return artworksInfo.map((info) =>
+          info.id === id ? { ...info, isFavorite: !info.isFavorite } : info
+        );
+      }
+      return [...artworksInfo, { id, isFavorite: true }];
+    });
+  }
+  const { id } = artworks.items;
+  console.log("app.js:", artworks);
   return (
     <>
       <GlobalStyle />
@@ -80,6 +96,9 @@ export default function App({ Component, pageProps }) {
         note={note}
         onNoteChange={handleNoteChange}
         onHandleTextAreaValue={handleTextAreaValue}
+        onToggleFavorite={handleToggleFavorite}
+        artworksInfo={artworksInfo}
+        id={id}
       />
     </>
   );

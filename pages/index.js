@@ -7,12 +7,14 @@ export default function HomePage({
   onHandleNextPage,
   offset,
   rowsPerPage,
+  artworksInfo,
+  onToggleFavorite,
 }) {
   return (
     <>
       <h1>SMK Notes</h1>
       <Link href={`/search`}>Go to search</Link>
-      <ArtworksList artworks={artworks} />
+      <ArtworksList artworks={artworks} onToggleFavorite={onToggleFavorite} />
       {offset >= rowsPerPage && (
         <button onClick={onHandlePreviousPage}>Previous Page</button>
       )}
