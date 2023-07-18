@@ -1,9 +1,8 @@
 import Image from "next/image";
 import styled from "styled-components";
 import { useState } from "react";
-import { mdiMusicNoteSixteenthDotted } from "@mdi/js";
 
-export default function ArtworkInfo({ artwork, notes, onNoteChange }) {
+export default function ArtworkInfo({ artwork, note, onNoteChange }) {
   const [isLabelTextVisible, setIsLabelTextVisible] = useState(false);
 
   const toggleLabelText = function () {
@@ -49,7 +48,6 @@ export default function ArtworkInfo({ artwork, notes, onNoteChange }) {
     textarea.style.height = "auto";
     textarea.style.height = textarea.scrollHeight + "px";
   };
-  console.log("notes", notes);
 
   return (
     <ArtworkContainer>
@@ -85,7 +83,9 @@ export default function ArtworkInfo({ artwork, notes, onNoteChange }) {
       <StyledTextArea
         name="personal-notes"
         id="personal-notes"
-        value={notes}
+        /*wenn note truthy ist, wird note.text als value in das textarea field gesetzt, 
+        sonst ist da value ein leerer String*/
+        value={note ? note.text : ""}
         onChange={(e) => onNoteChange(e.target.value)}
         rows={5}
         onInput={adjustTextAreaHeight}

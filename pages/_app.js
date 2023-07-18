@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }) {
   const rowsPerPage = 20;
   const rowsPerPageSearch = 1807;
   const [offset, setOffset] = useState(0);
-  const [notes, setNotes] = useLocalStorageState("notes", {
+  const [notes, setNotes] = useLocalStorageState("_NOTE", {
     defaultValue: [],
   });
 
@@ -61,18 +61,45 @@ export default function App({ Component, pageProps }) {
     );
   }
 
-  function handleNoteChange(id) {
-    setNotes((notes) => {
-      const newNote = notes.find((newNote) => newNote.id === id);
+  // function handleNoteChange(id) {
+  //   setNotes((notes) => {
+  //     const newNote = notes.find((newNote) => newNote.id === id);
 
-      if (newNote) {
-        return notes.map(({ id, newNote }) =>
-          newNote.id === id ? { ...newNote, text: !newNote.text } : newNote
+  //     if (newNote) {
+  //       return notes.map(({ id, newNote }) =>
+  //         newNote.id === id ? { ...newNote, text: !newNote.text } : newNote
+  //       );
+  //     }
+
+  //     console.log("newNote:", newNote);
+  //     return [...notes, { ...newNote, id: id }];
+  //   });
+  // }
+
+  // const { id } = artworks.items;
+  // console.log("ARTWORKS APP JS", artworks.items[0].titles);
+
+  // function handleUpdateNote(id, text) {
+  //   setNotes((notes) => {
+  //     const noteExists = notes.find((note) => note.id === id);
+
+  //     if (noteExists) {
+  //       return notes.map((note) => (note.id === id ? { ...note, text } : note));
+  //     }
+  //     return [...notes, { id, text }];
+  //   });
+  // }
+
+  function handleUpdateNote(artworkID, text) {
+    setNotes((notes) => {
+      const noteExists = notes.find((note) => note.artworkID === artworkID);
+
+      if (noteExists) {
+        return notes.map((note) =>
+          note.artworkID === artworkID ? { ...note, text } : note
         );
       }
-
-      console.log("newNote:", newNote);
-      return [...notes, { ...newNote, id: id }];
+      return [...notes, { artworkID, text }];
     });
   }
 
@@ -87,7 +114,7 @@ export default function App({ Component, pageProps }) {
         offset={offset}
         rowsPerPage={rowsPerPage}
         notes={notes}
-        onNoteChange={handleNoteChange}
+        onNoteChange={handleUpdateNote}
       />
     </>
   );
