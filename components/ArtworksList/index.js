@@ -1,13 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
-import FavoriteButton from "../FavoriteButton/index.js";
 
-export default function ArtworksList({
-  artworks,
-  onToggleFavorite,
-  artworksInfo,
-}) {
+export default function ArtworksList({ artworks }) {
   console.log("artworks:", artworks);
   return (
     <StyledList>
@@ -15,12 +10,6 @@ export default function ArtworksList({
         const titleText = titles[0].title;
         return (
           <StyledListItem key={id}>
-            {/* <FavoriteButton
-              onToggleFavorite={onToggleFavorite}
-              id={id}
-              artworksInfo={artworksInfo}
-              artworks={artworks}
-            /> */}
             <Link href={`/artwork-info/${id}`}>
               <StyledImageList
                 src={image_thumbnail}

@@ -20,9 +20,7 @@ export default function App({ Component, pageProps }) {
   const rowsPerPage = 20;
   const rowsPerPageSearch = 1807;
   const [offset, setOffset] = useState(0);
-  const [note, setNote] = useLocalStorageState("note", { defaultValue: 0 });
-  const [textAreaValue, setTextAreaValue] = useState("");
-  const [artworksInfo, setArtworksInfo] = useLocalStorageState("artworksInfo", {
+  const [notes, setNotes] = useLocalStorageState("notes", {
     defaultValue: [],
   });
 
@@ -62,27 +60,22 @@ export default function App({ Component, pageProps }) {
       }&rows=${rowsPerPage}&lang=en`
     );
   }
-  function handleNoteChange(newNote) {
-    setNote(newNote);
-  }
 
-  const handleTextAreaValue = (event) => {
-    setTextAreaValue(event.target.value);
-  };
+  function handleNoteChange(id) {
+    setNotes((notes) => {
+      const newNote = notes.find((newNote) => newNote.id === id);
 
-  function handleToggleFavorite(id) {
-    setArtworksInfo((artworksInfo) => {
-      const info = artworksInfo.find((info) => info.id === id);
-      if (info) {
-        return artworksInfo.map((info) =>
-          info.id === id ? { ...info, isFavorite: !info.isFavorite } : info
+      if (newNote) {
+        return notes.map(({ id, newNote }) =>
+          newNote.id === id ? { ...newNote, text: !newNote.text } : newNote
         );
       }
-      return [...artworksInfo, { id, isFavorite: true }];
+
+      console.log("newNote:", newNote);
+      return [...notes, { ...newNote, id: id }];
     });
   }
-  const { id } = artworks.items;
-  console.log("app.js:", artworks);
+
   return (
     <>
       <GlobalStyle />
@@ -93,12 +86,8 @@ export default function App({ Component, pageProps }) {
         onHandleNextPage={handleNextPage}
         offset={offset}
         rowsPerPage={rowsPerPage}
-        note={note}
+        notes={notes}
         onNoteChange={handleNoteChange}
-        onHandleTextAreaValue={handleTextAreaValue}
-        onToggleFavorite={handleToggleFavorite}
-        artworksInfo={artworksInfo}
-        id={id}
       />
     </>
   );
