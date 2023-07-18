@@ -21,6 +21,7 @@ export default function App({ Component, pageProps }) {
   const rowsPerPageSearch = 1807;
   const [offset, setOffset] = useState(0);
   const [note, setNote] = useLocalStorageState("note", { defaultValue: 0 });
+  const [textAreaValue, setTextAreaValue] = useState("");
 
   const {
     data: artworks,
@@ -62,6 +63,10 @@ export default function App({ Component, pageProps }) {
     setNote(newNote);
   }
 
+  const handleTextAreaValue = (event) => {
+    setTextAreaValue(event.target.value);
+  };
+
   return (
     <>
       <GlobalStyle />
@@ -74,6 +79,7 @@ export default function App({ Component, pageProps }) {
         rowsPerPage={rowsPerPage}
         note={note}
         onNoteChange={handleNoteChange}
+        onHandleTextAreaValue={handleTextAreaValue}
       />
     </>
   );

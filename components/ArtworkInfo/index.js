@@ -3,7 +3,12 @@ import styled from "styled-components";
 import { useState } from "react";
 import Link from "next/link";
 
-export default function ArtworkInfo({ artwork }) {
+export default function ArtworkInfo({
+  artwork,
+  note,
+  onNoteChange,
+  onHandleTextAreaValue,
+}) {
   const [isLabelTextVisible, setIsLabelTextVisible] = useState(false);
 
   const toggleLabelText = function () {
@@ -43,6 +48,12 @@ export default function ArtworkInfo({ artwork }) {
     ? productionDatesNotes.slice(prefix.length)
     : productionDatesNotes;
 
+  const adjustTextAreaHeight = (event) => {
+    const textarea = event.target;
+    textarea.style.height = "auto";
+    textarea.style.height = textarea.scrollHeight + "px";
+  };
+
   return (
     <ArtworkContainer>
       <StyledImageInfo
@@ -73,6 +84,16 @@ export default function ArtworkInfo({ artwork }) {
       {isLabelTextVisible && labelText.length > 0 && (
         <StyledLabelText>{labelText}</StyledLabelText>
       )}
+      <label for="personal-notes">My Notes</label>
+      <StyledTextArea
+        name="personal-notes"
+        id="personal-notes"
+        value={note}
+        onChange={(e) => onNoteChange(e.target.value)}
+        rows={5}
+        onInput={adjustTextAreaHeight}
+        onHandleTextAreaValue={onHandleTextAreaValue}
+      />
     </ArtworkContainer>
   );
 }
@@ -90,4 +111,16 @@ const StyledImageInfo = styled(Image)`
 const StyledLabelText = styled.p`
   text-align: justify;
   line-height: 20px;
+`;
+
+const StyledTextArea = styled.textarea`
+  width: 100%;
+  min-height: 100%;
+  border: none;
+  font-size: 18px;
+  line-height: 25px;
+  padding: 20px;
+  border: 0;
+  border-radius: 0;
+  background-color: #e8d7bc;
 `;
