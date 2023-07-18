@@ -54,19 +54,32 @@
 
 import Link from "next/link";
 
-export default function MyNotesPage({ notes, artworks }) {
-  /*
+// export default function MyNotesPage({ notes, artworks }) {
+/*
 wir suchen für jede Notiz das entsprechende Kunstwerk in artworks.items und
 fügen den Titel dieses Kunstwerks als artworkTitle zur Notiz hinzu.
 Das Resultat ist eine neue Liste von Notizen (notesWithArtworkTitle),
 die jetzt alle einen artworkTitle haben.
 */
 
+// const notesWithArtworkTitle = notes.map((note) => {
+//   note.artworkTitle = artworks.items.find(
+//     (artwork) => artwork.id === note.artworkID
+//   );
+//   const artworkTitle = artwork ? artwork.titles[0].title : "Unknown Title";
+//   return { ...note, artworkTitle };
+//   //titles[0].title;
+
+//   // return note;
+// });
+
+export default function MyNotesPage({ notes, artworks }) {
   const notesWithArtworkTitle = notes.map((note) => {
-    note.artworkTitle = artworks.items.find(
+    const artwork = artworks.items.find(
       (artwork) => artwork.id === note.artworkID
-    ); //titles[0].title;
-    return note;
+    );
+    const artworkTitle = artwork ? artwork.titles[0].title : "";
+    return { ...note, artworkTitle };
   });
 
   return (
