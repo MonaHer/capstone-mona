@@ -1,4 +1,5 @@
 import Link from "next/link";
+import styled from "styled-components";
 
 export default function MyNotesPage({ notes, artworks }) {
   const notesWithArtworkTitle = notes.map((note) => {
@@ -12,18 +13,28 @@ export default function MyNotesPage({ notes, artworks }) {
   return (
     <>
       <Link href="/">Back to Home</Link>
-      <ul>
+      <StyledList>
         {notesWithArtworkTitle.map((note) => {
           return (
             <li key={note.artworkID}>
-              <Link href={`/artwork-info/${note.artworkID}`}>
-                <h2>{note.artworkTitle}</h2>
-              </Link>
-              <p>{note.text}</p>
+              {note.text ? (
+                <>
+                  <Link href={`/artwork-info/${note.artworkID}`}>
+                    <h2>{note.artworkTitle}</h2>
+                  </Link>
+                  <p>{note.text}</p>
+                </>
+              ) : (
+                <></>
+              )}
             </li>
           );
         })}
-      </ul>
+      </StyledList>
     </>
   );
 }
+
+const StyledList = styled.ul`
+  list-style-type: none;
+`;
