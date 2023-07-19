@@ -1,6 +1,6 @@
 import ArtworksList from "@/components/ArtworksList/index.js";
-import Link from "next/link";
 import Navigation from "@/components/Navigation";
+import Header from "@/components/Header";
 
 export default function HomePage({
   artworks,
@@ -11,6 +11,7 @@ export default function HomePage({
 }) {
   return (
     <>
+      <Header />
       <h1>SMK Notes</h1>
 
       <ArtworksList artworks={artworks} />

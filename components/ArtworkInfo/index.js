@@ -2,6 +2,9 @@ import Image from "next/image";
 import styled from "styled-components";
 import { useState } from "react";
 import Navigation from "../Navigation";
+import Icon from "@mdi/react";
+import { mdiMapMarkerRadiusOutline } from "@mdi/js";
+import { mdiRulerSquare } from "@mdi/js";
 
 export default function ArtworkInfo({ artwork, note, onNoteChange }) {
   const [isLabelTextVisible, setIsLabelTextVisible] = useState(false);
@@ -59,21 +62,24 @@ export default function ArtworkInfo({ artwork, note, onNoteChange }) {
           height={200}
           width={200}
         />
+        <StyledArtworkTitle>
+          {titleText},{formattedProductionDatesNotes}
+        </StyledArtworkTitle>
         <p>
-          Title: {titleText},{formattedProductionDatesNotes}
-        </p>
-        <p>
-          Creator: {creator_forename} {creator_surname},{creatorLifeDates}
+          {creator_forename} {creator_surname},{creatorLifeDates}
         </p>
         {dimension1.length > 0 && (
           <p>
-            Dimensions:
+            <StyledIcon path={mdiRulerSquare} size={1} />
             {dimension1}x{dimension2}
             cm
           </p>
         )}
         {current_location_name && current_location_name.length > 0 && (
-          <p>Location: {current_location_name}</p>
+          <p>
+            <StyledIcon path={mdiMapMarkerRadiusOutline} size={1} />{" "}
+            {current_location_name}
+          </p>
         )}
         {labelText.length > 0 && (
           <button onClick={toggleLabelText}>Show Text</button>
@@ -81,6 +87,7 @@ export default function ArtworkInfo({ artwork, note, onNoteChange }) {
         {isLabelTextVisible && labelText.length > 0 && (
           <StyledLabelText>{labelText}</StyledLabelText>
         )}
+        <br />
         <label htmlFor="personal-notes">My Notes</label>
         <StyledTextArea
           name="personal-notes"
@@ -109,6 +116,14 @@ const StyledImageInfo = styled(Image)`
 const StyledLabelText = styled.p`
   text-align: justify;
   line-height: 20px;
+`;
+
+const StyledIcon = styled(Icon)`
+  color: whitesmoke;
+`;
+
+const StyledArtworkTitle = styled.p`
+  font-weight: bold;
 `;
 
 const StyledTextArea = styled.textarea`

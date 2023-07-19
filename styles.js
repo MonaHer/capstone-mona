@@ -13,7 +13,7 @@ export default createGlobalStyle`
     position: relative;
     margin: 0px;
     background-color: black;
-    color: white;
+    color: whitesmoke;
     
 
   }

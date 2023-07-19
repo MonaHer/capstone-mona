@@ -29,10 +29,9 @@ const NavBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 368px;
+  width: 100%;
   height: 60px;
   background-color: black;
-  color: white;
 `;
 
 const StyledNavBarLink = styled(Link)`
@@ -44,5 +43,5 @@ const StyledNavBarLink = styled(Link)`
 `;
 
 const StyledNavBarIcon = styled(Icon)`
-  color: white;
+  color: whitesmoke;
 `;

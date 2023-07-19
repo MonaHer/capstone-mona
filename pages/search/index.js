@@ -1,5 +1,5 @@
 import SearchBar from "@/components/SearchBar";
-import Link from "next/link";
+import Header from "@/components/Header";
 import Navigation from "@/components/Navigation";
 
 export default function SearchPage({
@@ -9,11 +9,13 @@ export default function SearchPage({
 }) {
   return (
     <>
+      <Header />
       <SearchBar
         artworks={artworks}
         searchAllArtworks={searchAllArtworks}
         searchTerm={searchTerm}
       />
+
       <Navigation />
     </>
   );

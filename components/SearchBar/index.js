@@ -108,10 +108,15 @@ const StyledListItem = styled.li`
 const StyledSearchInput = styled.input`
   position: absolute;
   background-color: transparent;
+  position: fixed;
+  top: 5px;
+  width: 80%;
+  height: 25px;
 `;
 
 const StyledMagnifyIcon = styled(Icon)`
   position: relative;
-  left: 150px;
-  top: -1px;
+  position: fixed;
+  left: 270px;
+  top: 5px;
 `;
