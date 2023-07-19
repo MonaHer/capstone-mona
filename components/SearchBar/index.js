@@ -112,6 +112,8 @@ const StyledSearchInput = styled.input`
   top: 5px;
   width: 80%;
   height: 25px;
+  color: whitesmoke;
+  border: none;
 `;
 
 const StyledMagnifyIcon = styled(Icon)`

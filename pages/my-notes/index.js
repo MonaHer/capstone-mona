@@ -25,7 +25,9 @@ export default function MyNotesPage({ notes, artworks }) {
                     <StyledLink href={`/artwork-info/${note.artworkID}`}>
                       <h2>{note.artworkTitle}</h2>
                     </StyledLink>
-                    <StyledNoteText>{note.text}</StyledNoteText>
+                    <StyledNoteTextWrapper>
+                      <StyledNoteText>{note.text}</StyledNoteText>
+                    </StyledNoteTextWrapper>
                   </>
                 ) : (
                   <></>
@@ -47,10 +49,15 @@ const StyledList = styled.ul`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: grey;
+  font-size: 24px;
 `;
 
 const StyledNoteText = styled.p`
   color: black;
+`;
+
+const StyledNoteTextWrapper = styled.div`
+  overflow-wrap: break-word;
 `;
 
 const StyledNotesSection = styled.div`
@@ -60,7 +67,7 @@ const StyledNotesSection = styled.div`
   border: none;
   font-size: 24px;
   line-height: 37px;
-  padding: 20px;
+  padding: 10px;
   resize: none;
 
   border: 0;
