@@ -20,7 +20,9 @@ export default function App({ Component, pageProps }) {
   const rowsPerPage = 20;
   const rowsPerPageSearch = 1807;
   const [offset, setOffset] = useState(0);
-  const [note, setNote] = useLocalStorageState("note", { defaultValue: 0 });
+  const [notes, setNotes] = useLocalStorageState("_NOTE", {
+    defaultValue: [],
+  });
 
   const {
     data: artworks,
@@ -28,7 +30,7 @@ export default function App({ Component, pageProps }) {
     isLoading,
     mutate,
   } = useSWR(
-    `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${offset}&rows=${rowsPerPageSearch}&lang=en`,
+    `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${offset}&rows=${rowsPerPage}&lang=en`,
     fetcher
   );
 
@@ -58,8 +60,18 @@ export default function App({ Component, pageProps }) {
       }&rows=${rowsPerPage}&lang=en`
     );
   }
-  function handleNoteChange(newNote) {
-    setNote(newNote);
+
+  function handleUpdateNote(artworkID, text) {
+    setNotes((notes) => {
+      const noteExists = notes.find((note) => note.artworkID === artworkID);
+
+      if (noteExists) {
+        return notes.map((note) =>
+          note.artworkID === artworkID ? { ...note, text } : note
+        );
+      }
+      return [...notes, { artworkID, text }];
+    });
   }
 
   return (
@@ -72,8 +84,8 @@ export default function App({ Component, pageProps }) {
         onHandleNextPage={handleNextPage}
         offset={offset}
         rowsPerPage={rowsPerPage}
-        note={note}
-        onNoteChange={handleNoteChange}
+        notes={notes}
+        onNoteChange={handleUpdateNote}
       />
     </>
   );

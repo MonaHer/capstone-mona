@@ -1,23 +1,13 @@
 import ArtworkInfo from "@/components/ArtworkInfo/index.js";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import NotesArea from "@/components/NotesArea";
-import { useState } from "react";
 
-export default function ArtworkInfoPage({ artworks }) {
+export default function ArtworkInfoPage({ artworks, onNoteChange, notes }) {
   const router = useRouter();
   const { id } = router.query;
   const currentArtworkInfo = artworks.items.find((item) => item.id === id);
 
-  const [note, setNote] = useState(() => {
-    const storedNote = localStorage.getItem(id);
-    return storedNote || "";
-  });
-
-  const handleNoteChange = (newNote) => {
-    setNote(newNote);
-    localStorage.setItem(id, newNote);
-  };
+  const currentArtworkNote = notes.find((note) => note.artworkID === id);
 
   if (!currentArtworkInfo) {
     return null;
@@ -27,9 +17,13 @@ export default function ArtworkInfoPage({ artworks }) {
     <>
       <Link href={`/`}>Go back to Artworkslist</Link>
       <Link href={`/search`}>Go back to search</Link>
+      <Link href={`/my-notes`}>Go to my notes</Link>
       <h1>ArtworkInfoPage</h1>
-      <ArtworkInfo artwork={currentArtworkInfo} />
-      <NotesArea note={note} onNoteChange={handleNoteChange} />
+      <ArtworkInfo
+        artwork={currentArtworkInfo}
+        note={currentArtworkNote}
+        onNoteChange={onNoteChange}
+      />
     </>
   );
 }
