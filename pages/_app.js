@@ -61,35 +61,6 @@ export default function App({ Component, pageProps }) {
     );
   }
 
-  // function handleNoteChange(id) {
-  //   setNotes((notes) => {
-  //     const newNote = notes.find((newNote) => newNote.id === id);
-
-  //     if (newNote) {
-  //       return notes.map(({ id, newNote }) =>
-  //         newNote.id === id ? { ...newNote, text: !newNote.text } : newNote
-  //       );
-  //     }
-
-  //     console.log("newNote:", newNote);
-  //     return [...notes, { ...newNote, id: id }];
-  //   });
-  // }
-
-  // const { id } = artworks.items;
-  // console.log("ARTWORKS APP JS", artworks.items[0].titles);
-
-  // function handleUpdateNote(id, text) {
-  //   setNotes((notes) => {
-  //     const noteExists = notes.find((note) => note.id === id);
-
-  //     if (noteExists) {
-  //       return notes.map((note) => (note.id === id ? { ...note, text } : note));
-  //     }
-  //     return [...notes, { id, text }];
-  //   });
-  // }
-
   function handleUpdateNote(artworkID, text) {
     setNotes((notes) => {
       const noteExists = notes.find((note) => note.artworkID === artworkID);

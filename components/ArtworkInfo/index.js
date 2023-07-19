@@ -83,8 +83,6 @@ export default function ArtworkInfo({ artwork, note, onNoteChange }) {
       <StyledTextArea
         name="personal-notes"
         id="personal-notes"
-        /*wenn note truthy ist, wird note.text als value in das textarea field gesetzt, 
-        sonst ist da value ein leerer String*/
         value={note ? note.text : ""}
         onChange={(event) => onNoteChange(id, event.target.value)}
         rows={5}

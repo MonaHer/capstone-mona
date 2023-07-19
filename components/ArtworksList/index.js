@@ -3,7 +3,6 @@ import Link from "next/link";
 import styled from "styled-components";
 
 export default function ArtworksList({ artworks }) {
-  console.log("artworks:", artworks);
   return (
     <StyledList>
       {artworks.items.map(({ id, image_thumbnail, titles }) => {
