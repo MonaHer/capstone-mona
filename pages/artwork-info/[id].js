@@ -1,4 +1,5 @@
 import ArtworkInfo from "@/components/ArtworkInfo/index.js";
+import Navigation from "@/components/Navigation";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -15,15 +16,13 @@ export default function ArtworkInfoPage({ artworks, onNoteChange, notes }) {
 
   return (
     <>
-      <Link href={`/`}>Go back to Artworkslist</Link>
-      <Link href={`/search`}>Go back to search</Link>
-      <Link href={`/my-notes`}>Go to my notes</Link>
       <h1>ArtworkInfoPage</h1>
       <ArtworkInfo
         artwork={currentArtworkInfo}
         note={currentArtworkNote}
         onNoteChange={onNoteChange}
       />
+      <Navigation />
     </>
   );
 }

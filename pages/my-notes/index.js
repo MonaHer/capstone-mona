@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
+import Navigation from "@/components/Navigation";
 
 export default function MyNotesPage({ notes, artworks }) {
   const notesWithArtworkTitle = notes.map((note) => {
@@ -13,7 +14,6 @@ export default function MyNotesPage({ notes, artworks }) {
   return (
     <>
       <StyledNotesSection>
-        <Link href="/">Back to Home</Link>
         <StyledList>
           {notesWithArtworkTitle.map((note) => {
             return (
@@ -33,6 +33,7 @@ export default function MyNotesPage({ notes, artworks }) {
           })}
         </StyledList>
       </StyledNotesSection>
+      <Navigation />
     </>
   );
 }

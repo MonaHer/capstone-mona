@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 import { useState } from "react";
+import Navigation from "../Navigation";
 
 export default function ArtworkInfo({ artwork, note, onNoteChange }) {
   const [isLabelTextVisible, setIsLabelTextVisible] = useState(false);
@@ -50,45 +51,48 @@ export default function ArtworkInfo({ artwork, note, onNoteChange }) {
   };
 
   return (
-    <ArtworkContainer>
-      <StyledImageInfo
-        src={image_thumbnail}
-        alt={titleText}
-        height={200}
-        width={200}
-      />
-      <p>
-        Title: {titleText},{formattedProductionDatesNotes}
-      </p>
-      <p>
-        Creator: {creator_forename} {creator_surname},{creatorLifeDates}
-      </p>
-      {dimension1.length > 0 && (
+    <>
+      <ArtworkContainer>
+        <StyledImageInfo
+          src={image_thumbnail}
+          alt={titleText}
+          height={200}
+          width={200}
+        />
         <p>
-          Dimensions:
-          {dimension1}x{dimension2}
-          cm
+          Title: {titleText},{formattedProductionDatesNotes}
         </p>
-      )}
-      {current_location_name && current_location_name.length > 0 && (
-        <p>Location: {current_location_name}</p>
-      )}
-      {labelText.length > 0 && (
-        <button onClick={toggleLabelText}>Show Text</button>
-      )}
-      {isLabelTextVisible && labelText.length > 0 && (
-        <StyledLabelText>{labelText}</StyledLabelText>
-      )}
-      <label htmlFor="personal-notes">My Notes</label>
-      <StyledTextArea
-        name="personal-notes"
-        id="personal-notes"
-        value={note ? note.text : ""}
-        onChange={(event) => onNoteChange(id, event.target.value)}
-        rows={5}
-        onInput={adjustTextAreaHeight}
-      />
-    </ArtworkContainer>
+        <p>
+          Creator: {creator_forename} {creator_surname},{creatorLifeDates}
+        </p>
+        {dimension1.length > 0 && (
+          <p>
+            Dimensions:
+            {dimension1}x{dimension2}
+            cm
+          </p>
+        )}
+        {current_location_name && current_location_name.length > 0 && (
+          <p>Location: {current_location_name}</p>
+        )}
+        {labelText.length > 0 && (
+          <button onClick={toggleLabelText}>Show Text</button>
+        )}
+        {isLabelTextVisible && labelText.length > 0 && (
+          <StyledLabelText>{labelText}</StyledLabelText>
+        )}
+        <label htmlFor="personal-notes">My Notes</label>
+        <StyledTextArea
+          name="personal-notes"
+          id="personal-notes"
+          value={note ? note.text : ""}
+          onChange={(event) => onNoteChange(id, event.target.value)}
+          rows={5}
+          onInput={adjustTextAreaHeight}
+        />
+      </ArtworkContainer>
+      <Navigation />
+    </>
   );
 }
 
@@ -106,18 +110,6 @@ const StyledLabelText = styled.p`
   text-align: justify;
   line-height: 20px;
 `;
-
-// const StyledTextArea = styled.textarea`
-//   width: 100%;
-//   min-height: 100%;
-//   border: none;
-//   font-size: 18px;
-//   line-height: 25px;
-//   padding: 20px;
-//   border: 0;
-//   border-radius: 0;
-//   background-color: #e8d7bc;
-// `;
 
 const StyledTextArea = styled.textarea`
   appearance: none;
