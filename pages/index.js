@@ -12,6 +12,7 @@ export default function HomePage({
     <>
       <h1>SMK Notes</h1>
       <Link href={`/search`}>Go to search</Link>
+      <Link href={`/my-notes`}>Go to my notes</Link>
       <ArtworksList artworks={artworks} />
       {offset >= rowsPerPage && (
         <button onClick={onHandlePreviousPage}>Previous Page</button>

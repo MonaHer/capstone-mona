@@ -17,6 +17,7 @@ export default function ArtworkInfoPage({ artworks, onNoteChange, notes }) {
     <>
       <Link href={`/`}>Go back to Artworkslist</Link>
       <Link href={`/search`}>Go back to search</Link>
+      <Link href={`/my-notes`}>Go to my notes</Link>
       <h1>ArtworkInfoPage</h1>
       <ArtworkInfo
         artwork={currentArtworkInfo}
