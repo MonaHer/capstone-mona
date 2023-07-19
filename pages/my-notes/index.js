@@ -22,10 +22,10 @@ export default function MyNotesPage({ notes, artworks }) {
               <li key={note.artworkID}>
                 {note.text ? (
                   <>
-                    <Link href={`/artwork-info/${note.artworkID}`}>
+                    <StyledLink href={`/artwork-info/${note.artworkID}`}>
                       <h2>{note.artworkTitle}</h2>
-                    </Link>
-                    <p>{note.text}</p>
+                    </StyledLink>
+                    <StyledNoteText>{note.text}</StyledNoteText>
                   </>
                 ) : (
                   <></>
@@ -44,6 +44,15 @@ const StyledList = styled.ul`
   list-style-type: none;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: grey;
+`;
+
+const StyledNoteText = styled.p`
+  color: black;
+`;
+
 const StyledNotesSection = styled.div`
   appearance: none;
   width: 100%;
@@ -51,9 +60,9 @@ const StyledNotesSection = styled.div`
   border: none;
   font-size: 24px;
   line-height: 37px;
-  padding: 37px;
+  padding: 20px;
   resize: none;
-  font-family: inherit;
+
   border: 0;
   border-radius: 0;
   background-image: linear-gradient(
@@ -66,5 +75,4 @@ const StyledNotesSection = styled.div`
     #f6f0cf 100%
   );
   background-size: 74px 74px;
-  font-family: var(--font);
 `;
