@@ -12,6 +12,8 @@ export default createGlobalStyle`
     font-family: system-ui;
     position: relative;
     margin: 0px;
+    background-color: black;
+    color: whitesmoke;
     
 
   }

@@ -1,11 +1,22 @@
 import SearchBar from "@/components/SearchBar";
-import Link from "next/link";
+import Header from "@/components/Header";
+import Navigation from "@/components/Navigation";
 
-export default function SearchPage({ artworks, searchAllArtworks }) {
+export default function SearchPage({
+  artworks,
+  searchAllArtworks,
+  searchTerm,
+}) {
   return (
     <>
-      <Link href={`/`}>Go back to ArtworksList</Link>
-      <SearchBar artworks={artworks} searchAllArtworks={searchAllArtworks} />
+      <Header />
+      <SearchBar
+        artworks={artworks}
+        searchAllArtworks={searchAllArtworks}
+        searchTerm={searchTerm}
+      />
+
+      <Navigation />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import ArtworksList from "@/components/ArtworksList/index.js";
-import Link from "next/link";
+import Navigation from "@/components/Navigation";
+import Header from "@/components/Header";
 
 export default function HomePage({
   artworks,
@@ -10,14 +11,15 @@ export default function HomePage({
 }) {
   return (
     <>
+      <Header />
       <h1>SMK Notes</h1>
-      <Link href={`/search`}>Go to search</Link>
-      <Link href={`/my-notes`}>Go to my notes</Link>
+
       <ArtworksList artworks={artworks} />
       {offset >= rowsPerPage && (
         <button onClick={onHandlePreviousPage}>Previous Page</button>
       )}
       <button onClick={onHandleNextPage}>Next Page</button>
+      <Navigation />
     </>
   );
 }

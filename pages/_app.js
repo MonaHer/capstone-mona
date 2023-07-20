@@ -23,6 +23,9 @@ export default function App({ Component, pageProps }) {
   const [notes, setNotes] = useLocalStorageState("_NOTE", {
     defaultValue: [],
   });
+  const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm", {
+    defaultValue: "",
+  });
 
   const {
     data: artworks,
@@ -61,6 +64,12 @@ export default function App({ Component, pageProps }) {
     );
   }
 
+  function handleAPISearch() {
+    mutate(
+      `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[titles:${searchTerm}],[image_hq:true],[object_names:painting],[public_domain:true]&offset=${offset}&rows=${rowsPerPageSearch}&lang=en`
+    );
+  }
+
   function handleUpdateNote(artworkID, text) {
     setNotes((notes) => {
       const noteExists = notes.find((note) => note.artworkID === artworkID);
@@ -86,6 +95,8 @@ export default function App({ Component, pageProps }) {
         rowsPerPage={rowsPerPage}
         notes={notes}
         onNoteChange={handleUpdateNote}
+        searchTerm={searchTerm}
+        onHandleAPISearch={handleAPISearch}
       />
     </>
   );
