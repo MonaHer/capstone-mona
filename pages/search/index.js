@@ -1,6 +1,4 @@
 import SearchBar from "@/components/SearchBar";
-import Header from "@/components/Header";
-import Navigation from "@/components/Navigation";
 
 export default function SearchPage({
   artworks,
@@ -9,14 +7,11 @@ export default function SearchPage({
 }) {
   return (
     <>
-      <Header />
       <SearchBar
         artworks={artworks}
         searchAllArtworks={searchAllArtworks}
         searchTerm={searchTerm}
       />
-
-      <Navigation />
     </>
   );
 }

@@ -2,6 +2,8 @@ import GlobalStyle from "../styles";
 import useSWR from "swr";
 import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
+import Header from "@/components/Header";
+import Navigation from "@/components/Navigation";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -86,6 +88,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
+      <Header />
       <Component
         {...pageProps}
         artworks={artworks}
@@ -98,6 +101,7 @@ export default function App({ Component, pageProps }) {
         searchTerm={searchTerm}
         onHandleAPISearch={handleAPISearch}
       />
+      <Navigation />
     </>
   );
 }

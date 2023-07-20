@@ -1,6 +1,4 @@
 import ArtworksList from "@/components/ArtworksList/index.js";
-import Navigation from "@/components/Navigation";
-import Header from "@/components/Header";
 
 export default function HomePage({
   artworks,
@@ -11,7 +9,6 @@ export default function HomePage({
 }) {
   return (
     <>
-      <Header />
       <h1>SMK Notes</h1>
 
       <ArtworksList artworks={artworks} />
@@ -19,7 +16,6 @@ export default function HomePage({
         <button onClick={onHandlePreviousPage}>Previous Page</button>
       )}
       <button onClick={onHandleNextPage}>Next Page</button>
-      <Navigation />
     </>
   );
 }
