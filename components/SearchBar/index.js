@@ -56,37 +56,38 @@ export default function SearchBar({ artworks }) {
   const isNoSearchTerm = searchTerm === "";
   return (
     <>
-      <StyledMagnifyIcon path={mdiMagnify} size={1} />
+      <StyledMagnifyIcon path={mdiMagnify} size={1.5} />
 
       <StyledSearchInput
         type="text"
         value={searchTerm}
         onChange={handleInputChange}
-        placeholder="Search.."
+        placeholder="What are you looking for?"
       />
-
-      {!isNoSearchTerm && searchResults.length > 0 && (
-        <StyledList>
-          {searchResults.map(({ id, image_thumbnail, titleText }) => {
-            return (
-              <StyledListItem key={id}>
-                <Link href={`/artwork-info/${id}`}>
-                  <StyledImage
-                    src={image_thumbnail}
-                    alt={titleText}
-                    width={200}
-                    height={200}
-                  />
-                </Link>
-              </StyledListItem>
-            );
-          })}
-        </StyledList>
-      )}
-      {searchPerformed && searchResults.length === 0 && (
-        <p>No results found.</p>
-      )}
-      {!searchPerformed && searchTerm === "" && null}
+      <StyledSearchResultsContainer>
+        {!isNoSearchTerm && searchResults.length > 0 && (
+          <StyledList>
+            {searchResults.map(({ id, image_thumbnail, titleText }) => {
+              return (
+                <StyledListItem key={id}>
+                  <Link href={`/artwork-info/${id}`}>
+                    <StyledImage
+                      src={image_thumbnail}
+                      alt={titleText}
+                      width={200}
+                      height={200}
+                    />
+                  </Link>
+                </StyledListItem>
+              );
+            })}
+          </StyledList>
+        )}
+        {searchPerformed && searchResults.length === 0 && (
+          <p>No results found.</p>
+        )}
+        {!searchPerformed && searchTerm === "" && null}
+      </StyledSearchResultsContainer>
     </>
   );
 }
@@ -109,16 +110,26 @@ const StyledSearchInput = styled.input`
   position: absolute;
   background-color: transparent;
   position: fixed;
-  top: 5px;
+  top: 20px;
+  left: 20px;
+  right: 20px;
   width: 80%;
-  height: 25px;
+  height: 40px;
   color: whitesmoke;
   border: none;
+  padding: 10px;
+  margin: 20px auto;
+
+  &:focus {
+    outline: 2px solid hotpink;
+  }
 `;
 
 const StyledMagnifyIcon = styled(Icon)`
   position: relative;
   position: fixed;
-  left: 270px;
-  top: 5px;
+  left: 300px;
+  top: 41px;
 `;
+
+const StyledSearchResultsContainer = styled.div``;
