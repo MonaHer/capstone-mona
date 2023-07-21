@@ -12,40 +12,41 @@ export default function MyNotesPage({ notes, artworks }) {
 
   return (
     <>
-      <StyledNotesSection>
-        <StyledList>
-          {notesWithArtworkTitle.map((note) => {
-            return (
-              <li key={note.artworkID}>
-                {note.text ? (
-                  <>
+      <StyledList>
+        {notesWithArtworkTitle.map((note) => {
+          return (
+            <li key={note.artworkID}>
+              {note.text ? (
+                <>
+                  <StyledNoteTextWrapper>
                     <StyledLink href={`/artwork-info/${note.artworkID}`}>
                       <h2>{note.artworkTitle}</h2>
                     </StyledLink>
-                    <StyledNoteTextWrapper>
-                      <StyledNoteText>{note.text}</StyledNoteText>
-                    </StyledNoteTextWrapper>
-                  </>
-                ) : (
-                  <></>
-                )}
-              </li>
-            );
-          })}
-        </StyledList>
-      </StyledNotesSection>
+
+                    <StyledNoteText>{note.text}</StyledNoteText>
+                  </StyledNoteTextWrapper>
+                </>
+              ) : (
+                <></>
+              )}
+            </li>
+          );
+        })}
+      </StyledList>
     </>
   );
 }
 
 const StyledList = styled.ul`
   list-style-type: none;
+  margin: 15px;
+  padding: 0;
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: grey;
-  font-size: 24px;
+  font-size: 18px;
 `;
 
 const StyledNoteText = styled.p`
@@ -53,10 +54,9 @@ const StyledNoteText = styled.p`
 `;
 
 const StyledNoteTextWrapper = styled.div`
-  overflow-wrap: break-word;
-`;
-
-const StyledNotesSection = styled.div`
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
   appearance: none;
   width: 100%;
   min-height: 100%;
