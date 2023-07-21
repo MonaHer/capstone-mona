@@ -4,12 +4,16 @@ import Icon from "@mdi/react";
 import { mdiMagnify } from "@mdi/js";
 import { mdiNotebookHeartOutline } from "@mdi/js";
 import { mdiFormatListBulleted } from "@mdi/js";
+import { mdiHomeOutline } from "@mdi/js";
 
 export default function Navigation() {
   return (
     <>
       <NavBar>
         <StyledNavBarLink href={`/`}>
+          <StyledNavBarIcon path={mdiHomeOutline} size={2} />
+        </StyledNavBarLink>
+        <StyledNavBarLink href={`/artworks-collection`}>
           <StyledNavBarIcon path={mdiFormatListBulleted} size={2} />
         </StyledNavBarLink>
         <StyledNavBarLink href={`/search`}>
@@ -35,7 +39,7 @@ const NavBar = styled.div`
 `;
 
 const StyledNavBarLink = styled(Link)`
-  width: 33.3%;
+  width: 25%;
   height: 100%;
   display: flex;
   align-items: center;
