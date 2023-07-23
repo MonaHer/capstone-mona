@@ -18,21 +18,29 @@ export default function RandomCover({ artworks }) {
 
   return (
     <>
-      <FullScreenImageContainer>
-        <Link href={`/artwork-info/${randomArtwork.id}`}>
-          <StyledImageList
+      <Link href={`/artwork-info/${randomArtwork.id}`}>
+        <FullScreenImageContainer>
+          <StyledImage
             src={randomArtwork.image_thumbnail}
             alt={randomArtwork.titleText}
             width={200}
             height={200}
           />
-        </Link>
-      </FullScreenImageContainer>
+
+          <TextOverlay>
+            <p>
+              Welcome to SMK Notes, your digital notebook for a long lasting
+              museums experience
+            </p>
+          </TextOverlay>
+          <Link href={`/artworks-collection`}>Get started</Link>
+        </FullScreenImageContainer>
+      </Link>
     </>
   );
 }
 
-const StyledImageList = styled(Image)`
+const StyledImage = styled(Image)`
   height: 50%;
   width: 50%;
   @media (max-width: 768px) {
@@ -40,6 +48,10 @@ const StyledImageList = styled(Image)`
     width: 100%;
     object-fit: cover;
     object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
   }
 `;
 
@@ -48,5 +60,18 @@ const FullScreenImageContainer = styled.div`
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    position: relative;
   }
+`;
+
+const TextOverlay = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: whitesmoke;
+  font-size: 24px;
+  text-align: center;
+  border-color: whitesmoke;
+  border: solid;
 `;
