@@ -98,8 +98,12 @@ const StyledList = styled.ul`
 `;
 
 const StyledImage = styled(Image)`
-  height: 90%;
-  width: 90%;
+  height: 50%;
+  width: 50%;
+  @media (max-width: 768px) {
+    height: 90%;
+    width: 90%;
+  }
 `;
 
 const StyledListItem = styled.li`
@@ -128,8 +132,14 @@ const StyledSearchInput = styled.input`
 const StyledMagnifyIcon = styled(Icon)`
   position: relative;
   position: fixed;
-  left: 300px;
+  left: 1580px;
   top: 41px;
+  @media (max-width: 768px) {
+    position: relative;
+    position: fixed;
+    left: 300px;
+    top: 41px;
+  }
 `;
 
 const StyledSearchResultsContainer = styled.div``;

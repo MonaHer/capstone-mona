@@ -15,7 +15,7 @@ export default function RandomCover({ artworks }) {
     filteredRandomArtworks[
       Math.floor(Math.random() * filteredRandomArtworks.length)
     ];
-  console.log(artworks);
+
   return (
     <>
       <Link href={`/artwork-info/${randomArtwork.id}`}>
@@ -31,6 +31,15 @@ export default function RandomCover({ artworks }) {
 }
 
 const StyledImageList = styled(Image)`
-  height: 100%;
-  width: 100%;
+  height: 50%;
+  width: 50%;
+  @media (max-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
+`;
+
+const ArtworkContainer = styled.div`
+  position: relative;
+  margin: 20px;
 `;
