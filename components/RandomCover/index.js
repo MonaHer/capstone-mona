@@ -18,14 +18,16 @@ export default function RandomCover({ artworks }) {
 
   return (
     <>
-      <Link href={`/artwork-info/${randomArtwork.id}`}>
-        <StyledImageList
-          src={randomArtwork.image_thumbnail}
-          alt={randomArtwork.titleText}
-          width={200}
-          height={200}
-        />
-      </Link>
+      <FullScreenImageContainer>
+        <Link href={`/artwork-info/${randomArtwork.id}`}>
+          <StyledImageList
+            src={randomArtwork.image_thumbnail}
+            alt={randomArtwork.titleText}
+            width={200}
+            height={200}
+          />
+        </Link>
+      </FullScreenImageContainer>
     </>
   );
 }
@@ -36,10 +38,15 @@ const StyledImageList = styled(Image)`
   @media (max-width: 768px) {
     height: 100%;
     width: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 `;
 
-const ArtworkContainer = styled.div`
-  position: relative;
-  margin: 20px;
+const FullScreenImageContainer = styled.div`
+  @media (max-width: 768px) {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
 `;
