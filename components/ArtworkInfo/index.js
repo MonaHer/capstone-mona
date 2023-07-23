@@ -158,4 +158,5 @@ const StyledTextArea = styled.textarea`
 const StyledButton = styled.button`
   background-color: black;
   color: whitesmoke;
+  border-color: hotpink;
 `;
