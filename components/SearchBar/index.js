@@ -6,10 +6,16 @@ import useLocalStorageState from "use-local-storage-state";
 import Icon from "@mdi/react";
 import { mdiMagnify } from "@mdi/js";
 
-export default function SearchBar({ artworks }) {
-  const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm", {
-    defaultValue: "",
-  });
+export default function SearchBar({
+  artworks,
+  searchTerm,
+  setSearchTerm,
+  onHandleSearch,
+}) {
+  // const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm", {
+  //   defaultValue: "*",
+  // });
+
   const [searchResults, setSearchResults] = useLocalStorageState(
     "searchResults",
     { defaultValue: [] }
@@ -27,6 +33,8 @@ export default function SearchBar({ artworks }) {
       const filteredArtworks = searchAllArtworks(value);
       setSearchResults(filteredArtworks);
       setSearchPerformed(true);
+
+      onHandleSearch(value);
     }
   }
 

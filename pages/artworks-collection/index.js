@@ -14,9 +14,9 @@ export default function HomePage({
       <Header />
       <h1>Artworks Collection</h1>
       <ArtworksList artworks={artworks} />
-      {offset >= rowsPerPage && (
-        <button onClick={onHandlePreviousPage}>Previous Page</button>
-      )}
+      {/* {offset >= rowsPerPage && ( */}
+      <button onClick={onHandlePreviousPage}>Previous Page</button>
+      {/* )} */}
       <button onClick={onHandleNextPage}>Next Page</button>
       <Navigation />
     </>

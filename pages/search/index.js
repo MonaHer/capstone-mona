@@ -6,6 +6,8 @@ export default function SearchPage({
   artworks,
   searchAllArtworks,
   searchTerm,
+  setSearchTerm,
+  onHandleSearch,
 }) {
   return (
     <>
@@ -14,6 +16,8 @@ export default function SearchPage({
         artworks={artworks}
         searchAllArtworks={searchAllArtworks}
         searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        onHandleSearch={onHandleSearch}
       />
       <Navigation />
     </>
