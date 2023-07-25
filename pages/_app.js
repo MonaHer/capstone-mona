@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }) {
     error,
     isLoading,
   } = useSWR(
-    `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[titles:${searchTerm}],[public_domain:true]&offset=${offset}&rows=1000&lang=en`,
+    `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${offset}&rows=1000&lang=en`,
     fetcher
   );
 
