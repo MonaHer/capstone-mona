@@ -13,11 +13,11 @@ export default function ArtworkCollection({
   searchTerm,
   setSearchTerm,
   onHandleSearch,
+  totalPages,
 }) {
   return (
     <>
-      <Header />
-      <h1>Artworks Collection</h1>
+      {/* <Header /> */}
       <SearchBar
         artworks={artworks}
         searchTerm={searchTerm}
@@ -25,12 +25,14 @@ export default function ArtworkCollection({
         onHandleSearch={onHandleSearch}
       />
       <ArtworksList artworks={artworks} />
-      {offset >= rowsPerPage && (
+      {/* {offset >= rowsPerPage && (
         <StyledButton onClick={onHandlePreviousPage}>
           Previous Page
         </StyledButton>
       )}
-      <StyledButton onClick={onHandleNextPage}>Next Page</StyledButton>
+      {offset + rowsPerPage < totalPages * rowsPerPage && (
+        <StyledButton onClick={onHandleNextPage}>Next Page</StyledButton>
+      )} */}
       <Navigation />
     </>
   );

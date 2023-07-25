@@ -18,50 +18,49 @@ export default function SearchBar({
   // const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm",
   // (prevValue) => (prevValue === "*" ? "*" : ""))
 
-  const [searchResults, setSearchResults] = useLocalStorageState(
-    "searchResults",
-    { defaultValue: [] }
-  );
+  // const [searchResults, setSearchResults] = useLocalStorageState(
+  //   "searchResults",
+  //   { defaultValue: [] }
+  // );
 
-  const [searchPerformed, setSearchPerformed] = useState(false);
+  // const [searchPerformed, setSearchPerformed] = useState(false);
 
-  function handleInputChange(event) {
-    const { value } = event.target;
-    setSearchTerm(value);
-    if (value === "") {
-      setSearchResults([]);
-      setSearchPerformed(false);
-    } else {
-      const filteredArtworks = searchAllArtworks(value);
-      setSearchResults(filteredArtworks);
-      setSearchPerformed(true);
+  // function handleInputChange(event) {
+  //   const { value } = event.target;
+  //   setSearchTerm(value);
+  //   if (value === "") {
+  //     setSearchResults([]);
+  //     setSearchPerformed(false);
+  //   } else {
+  //     const filteredArtworks = searchAllArtworks(value);
+  //     setSearchResults(filteredArtworks);
+  //     setSearchPerformed(true);
 
-      onHandleSearch(value);
-    }
-  }
+  //     onHandleSearch(value);
+  //   }
+  // }
 
-  function searchAllArtworks(value) {
-    const filteredArtworks = artworks.items.filter((artwork) => {
-      const titleMatch = artwork.titles.some((title) =>
-        title.title?.toString()?.toLowerCase().includes(value.toLowerCase())
-      );
-      const creatorMatch =
-        artwork.production[0]?.creator_forename
-          ?.toString()
-          ?.toLowerCase()
-          .includes(value.toLowerCase()) ||
-        artwork.production[0]?.creator_surname
-          ?.toString()
-          ?.toLowerCase()
-          .includes(value.toLowerCase()) ||
-        `${artwork.production[0]?.creator_forename} ${artwork.production[0]?.creator_surname}`
-          ?.toString()
-          ?.toLowerCase()
-          .includes(value.toLowerCase());
-      return titleMatch || creatorMatch;
-    });
-    return filteredArtworks;
-  }
+  // function searchAllArtworks(value) {
+  //   const filteredArtworks = artworks.items.filter((artwork) => {
+  //     const titleMatch = artwork.titles.some((title) =>
+  //       title.title?.toString()?.toLowerCase().includes(value.toLowerCase())
+  //     );
+  //     const creatorMatch =
+  //       artwork.production[0]?.creator_forename
+  //         ?.toString()
+  //         ?.toLowerCase()
+  //         .includes(value.toLowerCase()) ||
+  //       artwork.production[0]?.creator_surname
+  //         ?.toString()
+  //         ?.toLowerCase()
+  //         .includes(value.toLowerCase()) ||
+  //       `${artwork.production[0]?.creator_forename} ${artwork.production[0]?.creator_surname}`
+  //         ?.toString()
+  //         ?.toLowerCase()
+  //         .includes(value.toLowerCase());
+  //     return titleMatch || creatorMatch;
+  //   });
+  //   return filteredArtworks;
 
   const isNoSearchTerm = searchTerm === "";
   return (
@@ -71,11 +70,12 @@ export default function SearchBar({
       <StyledSearchInput
         type="text"
         value={searchTerm}
-        onChange={handleInputChange}
-        placeholder="What are you looking for?"
+        placeholder="Which artwork are you looking for?"
+        onChange={(event) => setSearchTerm(event.target.value)}
       />
+      <button onClick={onHandleSearch}>Search</button>
 
-      {!isNoSearchTerm && searchResults.length > 0 && (
+      {/* {!isNoSearchTerm && searchResults.length > 0 && (
         <StyledList>
           {searchResults.map(({ id, image_thumbnail, titleText }) => {
             return (
@@ -98,7 +98,7 @@ export default function SearchBar({
           <p>No results found.</p>
         </StyledNoResults>
       )}
-      {!searchPerformed && searchTerm === "" && null}
+      {!searchPerformed && searchTerm === "" && null} */}
     </>
   );
 }
