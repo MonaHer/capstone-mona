@@ -12,9 +12,11 @@ export default function SearchBar({
   setSearchTerm,
   onHandleSearch,
 }) {
-  // const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm", {
-  //   defaultValue: "*",
-  // });
+  // ("searchTerm", {
+  //   //   defaultValue: "*",
+
+  // const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm",
+  // (prevValue) => (prevValue === "*" ? "*" : ""))
 
   const [searchResults, setSearchResults] = useLocalStorageState(
     "searchResults",
@@ -72,30 +74,31 @@ export default function SearchBar({
         onChange={handleInputChange}
         placeholder="What are you looking for?"
       />
-      <StyledSearchResultsContainer>
-        {!isNoSearchTerm && searchResults.length > 0 && (
-          <StyledList>
-            {searchResults.map(({ id, image_thumbnail, titleText }) => {
-              return (
-                <StyledListItem key={id}>
-                  <Link href={`/artwork-info/${id}`}>
-                    <StyledImage
-                      src={image_thumbnail}
-                      alt={titleText}
-                      width={200}
-                      height={200}
-                    />
-                  </Link>
-                </StyledListItem>
-              );
-            })}
-          </StyledList>
-        )}
-        {searchPerformed && searchResults.length === 0 && (
+
+      {!isNoSearchTerm && searchResults.length > 0 && (
+        <StyledList>
+          {searchResults.map(({ id, image_thumbnail, titleText }) => {
+            return (
+              <StyledListItem key={id}>
+                <Link href={`/artwork-info/${id}`}>
+                  <StyledImage
+                    src={image_thumbnail}
+                    alt={titleText}
+                    width={200}
+                    height={200}
+                  />
+                </Link>
+              </StyledListItem>
+            );
+          })}
+        </StyledList>
+      )}
+      {searchPerformed && searchResults.length === 0 && (
+        <StyledNoResults>
           <p>No results found.</p>
-        )}
-        {!searchPerformed && searchTerm === "" && null}
-      </StyledSearchResultsContainer>
+        </StyledNoResults>
+      )}
+      {!searchPerformed && searchTerm === "" && null}
     </>
   );
 }
@@ -103,6 +106,10 @@ export default function SearchBar({
 const StyledList = styled.ul`
   list-style-type: none;
   padding: 0;
+`;
+const StyledNoResults = styled.div`
+  margin-top: 150px;
+  text-align: center;
 `;
 
 const StyledImage = styled(Image)`
@@ -149,5 +156,3 @@ const StyledMagnifyIcon = styled(Icon)`
     top: 41px;
   }
 `;
-
-const StyledSearchResultsContainer = styled.div``;

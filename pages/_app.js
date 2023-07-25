@@ -17,15 +17,14 @@ const fetcher = async (url) => {
 };
 
 export default function App({ Component, pageProps }) {
-  const rowsPerPage = 100;
-  const rowsPerPageSearch = 1807;
+  const rowsPerPage = 20;
+
   const [offset, setOffset] = useState(0);
+
   const [notes, setNotes] = useLocalStorageState("_NOTE", {
     defaultValue: [],
   });
-  const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm", {
-    defaultValue: "*",
-  });
+  const [searchTerm, setSearchTerm] = useState("*");
 
   const {
     data: artworks,
@@ -33,7 +32,7 @@ export default function App({ Component, pageProps }) {
     isLoading,
     mutate,
   } = useSWR(
-    `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${offset}&rows=${rowsPerPage}&lang=en`,
+    `https://api.smk.dk/api/v1/art/search/?keys=${searchTerm}&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${offset}&rows=${rowsPerPage}&lang=en`,
     fetcher
   );
 
@@ -50,31 +49,15 @@ export default function App({ Component, pageProps }) {
     }
   }
 
-  //   mutate(
-  //     `https://api.smk.dk/api/v1/art/search/?keys=${searchTerm}&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${
-  //       offset - rowsPerPage
-  //     }&rows=${rowsPerPage}&lang=en`
-  //   );
-  // }
-
   function handleNextPage() {
     setOffset((prevOffset) => prevOffset + 30);
   }
 
-  //   mutate(
-  //     `https://api.smk.dk/api/v1/art/search/?keys=${searchTerm}&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${
-  //       offset + rowsPerPage
-  //     }&rows=${rowsPerPage}&lang=en`
-  //   );
-  // }
-
   function handleSearch(searchTerm) {
-    setSearchTerm(searchTerm);
-
-    if (searchTerm !== "") {
-      mutate(
-        `https://api.smk.dk/api/v1/art/search/?keys=${searchTerm}&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${offset}&rows=${rowsPerPage}&lang=en`
-      );
+    if (searchTerm === "") {
+      setSearchTerm("*");
+    } else {
+      setSearchTerm(searchTerm);
     }
   }
 
