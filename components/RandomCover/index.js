@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { styled } from "styled-components";
 import { useRouter } from "next/router";
+import LoadingAnimation from "../LoadingAnimation";
 
 export default function RandomCover({ artworks }) {
   const router = useRouter();
@@ -33,6 +34,9 @@ export default function RandomCover({ artworks }) {
             width={200}
             height={200}
           />
+          <LoadingAnimationOverlay>
+            <LoadingAnimation />
+          </LoadingAnimationOverlay>
           <TextOverlay>
             <p>SMK Notes</p>
           </TextOverlay>
@@ -76,4 +80,13 @@ const TextOverlay = styled.div`
   font-size: 24px;
   text-align: center;
   border: 1px solid whitesmoke;
+`;
+
+const LoadingAnimationOverlay = styled.div`
+  position: absolute;
+  width: 10%;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
 `;
