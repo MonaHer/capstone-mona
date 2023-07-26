@@ -6,76 +6,66 @@ import useLocalStorageState from "use-local-storage-state";
 import Icon from "@mdi/react";
 import { mdiMagnify } from "@mdi/js";
 
-export default function SearchBar({
-  artworks,
-  searchTerm,
-  setSearchTerm,
-  onHandleSearch,
-}) {
-  // ("searchTerm", {
-  //   //   defaultValue: "*",
+export default function SearchBar({ artworks }) {
+  const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm", {
+    defaultValue: "",
+  });
+  const [searchResults, setSearchResults] = useLocalStorageState(
+    "searchResults",
+    { defaultValue: [] }
+  );
 
-  // const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm",
-  // (prevValue) => (prevValue === "*" ? "*" : ""))
+  const [searchPerformed, setSearchPerformed] = useState(false);
 
-  // const [searchResults, setSearchResults] = useLocalStorageState(
-  //   "searchResults",
-  //   { defaultValue: [] }
-  // );
+  function handleInputChange(event) {
+    const { value } = event.target;
+    setSearchTerm(value);
+    if (value === "") {
+      setSearchResults([]);
+      setSearchPerformed(false);
+    } else {
+      const filteredArtworks = searchAllArtworks(value);
+      setSearchResults(filteredArtworks);
+      setSearchPerformed(true);
+    }
+  }
 
-  // const [searchPerformed, setSearchPerformed] = useState(false);
-
-  // function handleInputChange(event) {
-  //   const { value } = event.target;
-  //   setSearchTerm(value);
-  //   if (value === "") {
-  //     setSearchResults([]);
-  //     setSearchPerformed(false);
-  //   } else {
-  //     const filteredArtworks = searchAllArtworks(value);
-  //     setSearchResults(filteredArtworks);
-  //     setSearchPerformed(true);
-
-  //     onHandleSearch(value);
-  //   }
-  // }
-
-  // function searchAllArtworks(value) {
-  //   const filteredArtworks = artworks.items.filter((artwork) => {
-  //     const titleMatch = artwork.titles.some((title) =>
-  //       title.title?.toString()?.toLowerCase().includes(value.toLowerCase())
-  //     );
-  //     const creatorMatch =
-  //       artwork.production[0]?.creator_forename
-  //         ?.toString()
-  //         ?.toLowerCase()
-  //         .includes(value.toLowerCase()) ||
-  //       artwork.production[0]?.creator_surname
-  //         ?.toString()
-  //         ?.toLowerCase()
-  //         .includes(value.toLowerCase()) ||
-  //       `${artwork.production[0]?.creator_forename} ${artwork.production[0]?.creator_surname}`
-  //         ?.toString()
-  //         ?.toLowerCase()
-  //         .includes(value.toLowerCase());
-  //     return titleMatch || creatorMatch;
-  //   });
-  //   return filteredArtworks;
+  function searchAllArtworks(value) {
+    const filteredArtworks = artworks.items.filter((artwork) => {
+      const titleMatch = artwork.titles.some((title) =>
+        title.title?.toString()?.toLowerCase().includes(value.toLowerCase())
+      );
+      const creatorMatch =
+        artwork.production[0]?.creator_forename
+          ?.toString()
+          ?.toLowerCase()
+          .includes(value.toLowerCase()) ||
+        artwork.production[0]?.creator_surname
+          ?.toString()
+          ?.toLowerCase()
+          .includes(value.toLowerCase()) ||
+        `${artwork.production[0]?.creator_forename} ${artwork.production[0]?.creator_surname}`
+          ?.toString()
+          ?.toLowerCase()
+          .includes(value.toLowerCase());
+      return titleMatch || creatorMatch;
+    });
+    return filteredArtworks;
+  }
 
   const isNoSearchTerm = searchTerm === "";
   return (
     <>
-      <StyledMagnifyIcon path={mdiMagnify} size={1.5} />
+      <StyledMagnifyIcon path={mdiMagnify} size={1.4} />
 
       <StyledSearchInput
         type="text"
         value={searchTerm}
-        placeholder="Which artwork are you looking for?"
-        onChange={(event) => setSearchTerm(event.target.value)}
+        onChange={handleInputChange}
+        placeholder="What are you looking for?"
       />
-      <button onClick={onHandleSearch}>Search</button>
 
-      {/* {!isNoSearchTerm && searchResults.length > 0 && (
+      {!isNoSearchTerm && searchResults.length > 0 && (
         <StyledList>
           {searchResults.map(({ id, image_thumbnail, titleText }) => {
             return (
@@ -94,11 +84,9 @@ export default function SearchBar({
         </StyledList>
       )}
       {searchPerformed && searchResults.length === 0 && (
-        <StyledNoResults>
-          <p>No results found.</p>
-        </StyledNoResults>
+        <p>No results found.</p>
       )}
-      {!searchPerformed && searchTerm === "" && null} */}
+      {!searchPerformed && searchTerm === "" && null}
     </>
   );
 }
@@ -107,18 +95,10 @@ const StyledList = styled.ul`
   list-style-type: none;
   padding: 0;
 `;
-const StyledNoResults = styled.div`
-  margin-top: 150px;
-  text-align: center;
-`;
 
 const StyledImage = styled(Image)`
-  height: 50%;
-  width: 50%;
-  @media (max-width: 768px) {
-    height: 90%;
-    width: 90%;
-  }
+  height: 90%;
+  width: 90%;
 `;
 
 const StyledListItem = styled.li`
@@ -153,6 +133,6 @@ const StyledMagnifyIcon = styled(Icon)`
     position: relative;
     position: fixed;
     left: 300px;
-    top: 41px;
+    top: 43px;
   }
 `;

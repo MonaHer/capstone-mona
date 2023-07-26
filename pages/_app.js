@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }) {
   const [notes, setNotes] = useLocalStorageState("_NOTE", {
     defaultValue: [],
   });
-  const [searchTerm, setSearchTerm] = useState("woman");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const {
     data: artworks,
@@ -61,7 +61,7 @@ export default function App({ Component, pageProps }) {
 
   function handleSearch(searchTerm) {
     if (searchTerm === "") {
-      setSearchTerm("woman");
+      setSearchTerm("");
     } else {
       setSearchTerm(searchTerm);
     }
