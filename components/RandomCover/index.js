@@ -6,11 +6,10 @@ import LoadingAnimation from "../LoadingAnimation";
 
 export default function RandomCover({ artworks }) {
   const router = useRouter();
-  const filteredRandomArtworks = artworks.items;
-
-  // filter(
-  //   (item) => item.dimensions[0].value > item.dimensions[1].value
-  // );
+  const filteredRandomArtworks = artworks.items.filter(
+    (item) =>
+      item.dimensions && item.dimensions[0].value > item.dimensions[1].value
+  );
 
   if (filteredRandomArtworks.length === 0) {
     return null;

@@ -6,14 +6,9 @@ import { styled } from "styled-components";
 
 export default function ArtworkCollection({
   artworks,
-  onHandlePreviousPage,
-  onHandleNextPage,
-  offset,
-  rowsPerPage,
   searchTerm,
   setSearchTerm,
   onHandleSearch,
-  totalPages,
 }) {
   return (
     <>
@@ -25,14 +20,6 @@ export default function ArtworkCollection({
         onHandleSearch={onHandleSearch}
       />
       <ArtworksList artworks={artworks} />
-      {/* {offset >= rowsPerPage && (
-        <StyledButton onClick={onHandlePreviousPage}>
-          Previous Page
-        </StyledButton>
-      )}
-      {offset + rowsPerPage < totalPages * rowsPerPage && (
-        <StyledButton onClick={onHandleNextPage}>Next Page</StyledButton>
-      )} */}
       <Navigation />
     </>
   );

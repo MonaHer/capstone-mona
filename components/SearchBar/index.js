@@ -27,6 +27,7 @@ export default function SearchBar({ artworks }) {
       const filteredArtworks = searchAllArtworks(value);
       setSearchResults(filteredArtworks);
       setSearchPerformed(true);
+      window.scrollTo(0, 0);
     }
   }
 
@@ -86,7 +87,6 @@ export default function SearchBar({ artworks }) {
       {searchPerformed && searchResults.length === 0 && (
         <p>No results found.</p>
       )}
-      {!searchPerformed && searchTerm === "" && null}
     </>
   );
 }
