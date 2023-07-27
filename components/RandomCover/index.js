@@ -43,11 +43,12 @@ export default function RandomCover({ artworks }) {
         />
         <LoadingAnimationOverlay show={showLoadingAnimation}>
           <LoadingAnimation />
-
+        </LoadingAnimationOverlay>
+        <StyledLinkOverlay>
           <StyledLink href={`/artwork-info/${randomArtwork.id}`}>
             START
           </StyledLink>
-        </LoadingAnimationOverlay>
+        </StyledLinkOverlay>
         <TextOverlay>
           <p>SMK Notes</p>
         </TextOverlay>
@@ -98,9 +99,16 @@ const LoadingAnimationOverlay = styled.div`
   top: 90%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* justify-content: center; */
 `;
 
 const StyledLink = styled(Link)`
   color: whitesmoke;
+`;
+
+const StyledLinkOverlay = styled.div`
+  position: absolute;
+  width: 10%;
+  top: 95%;
+  left: 49%;
+  transform: translate(-50%, -50%);
 `;
