@@ -2,8 +2,11 @@ import Header from "@/components/Header";
 import Navigation from "@/components/Navigation";
 import Link from "next/link";
 import styled from "styled-components";
+import { useState } from "react";
 
 export default function MyNotesPage({ notes, artworks }) {
+  const [showNoteText, setShowNoteText] = useState(false);
+
   const notesWithArtworkTitle = notes.map((note) => {
     const artwork = artworks.items.find(
       (artwork) => artwork.id === note.artworkID
@@ -11,6 +14,10 @@ export default function MyNotesPage({ notes, artworks }) {
     const artworkTitle = artwork ? artwork.titles[0].title : "";
     return { ...note, artworkTitle };
   });
+
+  function toggleNoteText() {
+    setShowNoteText(!showNoteText);
+  }
 
   return (
     <>
@@ -25,8 +32,12 @@ export default function MyNotesPage({ notes, artworks }) {
                     <StyledLink href={`/artwork-info/${note.artworkID}`}>
                       <h2>{note.artworkTitle}</h2>
                     </StyledLink>
-
-                    <StyledNoteText>{note.text}</StyledNoteText>
+                    <button onClick={toggleNoteText}>
+                      {showNoteText ? "Show Note" : "Hide Note"}
+                    </button>
+                    {showNoteText && (
+                      <StyledNoteText>{note.text}</StyledNoteText>
+                    )}
                   </StyledNoteTextWrapper>
                 </>
               ) : (
