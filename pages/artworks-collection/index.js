@@ -9,6 +9,8 @@ export default function ArtworkCollection({
   searchTerm,
   setSearchTerm,
   onHandleSearch,
+  onToggleFavorite,
+  favorites,
 }) {
   return (
     <>
@@ -18,8 +20,14 @@ export default function ArtworkCollection({
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         onHandleSearch={onHandleSearch}
+        favorites={favorites}
+        onToggleFavorite={onToggleFavorite}
       />
-      <ArtworksList artworks={artworks} />
+      <ArtworksList
+        artworks={artworks}
+        favorites={favorites}
+        onToggleFavorite={onToggleFavorite}
+      />
       <Navigation />
     </>
   );

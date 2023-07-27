@@ -1,15 +1,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
-export default function ArtworksList({ artworks }) {
+import FavoriteButton from "../FavoriteButton";
+
+export default function ArtworksList({
+  artworks,
+  onToggleFavorite,
+  favorites,
+}) {
   return (
     <StyledList>
       {artworks.items.map(({ id, image_thumbnail, titles }) => {
         const titleText = titles[0].title;
         return (
           <StyledListItem key={id}>
+            <FavoriteButton
+              isFavored={favorites.includes(id)}
+              onClick={onToggleFavorite}
+            />
             <Link href={`/artwork-info/${id}`}>
               <StyledImageList
                 src={image_thumbnail}
@@ -30,7 +39,7 @@ const StyledList = styled.ul`
   padding: 0;
 `;
 
-const StyledImageList = styled(LazyLoadImage)`
+const StyledImageList = styled(Image)`
   height: 50%;
   width: 50%;
   @media (max-width: 768px) {

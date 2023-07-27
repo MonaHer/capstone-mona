@@ -5,8 +5,15 @@ import Navigation from "../Navigation";
 import Icon from "@mdi/react";
 import { mdiMapMarkerRadiusOutline } from "@mdi/js";
 import { mdiRulerSquare } from "@mdi/js";
+import FavoriteButton from "../FavoriteButton";
 
-export default function ArtworkInfo({ artwork, note, onNoteChange }) {
+export default function ArtworkInfo({
+  artwork,
+  note,
+  onNoteChange,
+  onToggleFavorite,
+  favorites,
+}) {
   const [isLabelTextVisible, setIsLabelTextVisible] = useState(false);
 
   const toggleLabelText = function () {
@@ -56,6 +63,10 @@ export default function ArtworkInfo({ artwork, note, onNoteChange }) {
   return (
     <>
       <ArtworkContainer>
+        <FavoriteButton
+          onClick={onToggleFavorite}
+          isFavored={favorites.includes(id)}
+        />
         <StyledImageInfo
           src={image_thumbnail}
           alt={titleText}

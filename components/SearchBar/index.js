@@ -5,8 +5,9 @@ import Image from "next/image";
 import useLocalStorageState from "use-local-storage-state";
 import Icon from "@mdi/react";
 import { mdiMagnify } from "@mdi/js";
+import FavoriteButton from "../FavoriteButton";
 
-export default function SearchBar({ artworks }) {
+export default function SearchBar({ artworks, onToggleFavorite, favorites }) {
   const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm", {
     defaultValue: "",
   });
@@ -71,6 +72,10 @@ export default function SearchBar({ artworks }) {
           {searchResults.map(({ id, image_thumbnail, titleText }) => {
             return (
               <StyledListItem key={id}>
+                <FavoriteButton
+                  isFavored={favorites.includes(artwork.id)}
+                  onClick={() => onToggleFavorite(artwork.id)}
+                />
                 <Link href={`/artwork-info/${id}`}>
                   <StyledImage
                     src={image_thumbnail}
