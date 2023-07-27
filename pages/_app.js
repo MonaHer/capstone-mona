@@ -17,21 +17,19 @@ const fetcher = async (url) => {
 };
 
 export default function App({ Component, pageProps }) {
-  const rowsPerPage = 20;
-  const rowsPerPageSearch = 1807;
+  const rowsPerPage = 1900;
+
   const [offset, setOffset] = useState(0);
+
   const [notes, setNotes] = useLocalStorageState("_NOTE", {
     defaultValue: [],
   });
-  const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm", {
-    defaultValue: "",
-  });
+  const [searchTerm, setSearchTerm] = useState("");
 
   const {
     data: artworks,
     error,
     isLoading,
-    mutate,
   } = useSWR(
     `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${offset}&rows=${rowsPerPage}&lang=en`,
     fetcher
@@ -44,30 +42,12 @@ export default function App({ Component, pageProps }) {
     return <div>loading...</div>;
   }
 
-  function handlePreviousPage() {
-    setOffset((prevOffset) => prevOffset - rowsPerPage);
-
-    mutate(
-      `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${
-        offset - rowsPerPage
-      }&rows=${rowsPerPage}&lang=en`
-    );
-  }
-
-  function handleNextPage() {
-    setOffset((prevOffset) => prevOffset + rowsPerPage);
-
-    mutate(
-      `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[image_hq:true],[object_names:painting],[public_domain:true]&offset=${
-        offset + rowsPerPage
-      }&rows=${rowsPerPage}&lang=en`
-    );
-  }
-
-  function handleAPISearch() {
-    mutate(
-      `https://api.smk.dk/api/v1/art/search/?keys=*&fields=image_thumbnail&fields=titles&fields=id&fields=production&fields=dimensions&fields=current_location_name&fields=production_dates_notes&fields=labels&filters=[titles:${searchTerm}],[image_hq:true],[object_names:painting],[public_domain:true]&offset=${offset}&rows=${rowsPerPageSearch}&lang=en`
-    );
+  function handleSearch(searchTerm) {
+    if (searchTerm === "") {
+      setSearchTerm("");
+    } else {
+      setSearchTerm(searchTerm);
+    }
   }
 
   function handleUpdateNote(artworkID, text) {
@@ -86,17 +66,17 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
+
       <Component
         {...pageProps}
         artworks={artworks}
-        onHandlePreviousPage={handlePreviousPage}
-        onHandleNextPage={handleNextPage}
         offset={offset}
         rowsPerPage={rowsPerPage}
         notes={notes}
         onNoteChange={handleUpdateNote}
         searchTerm={searchTerm}
-        onHandleAPISearch={handleAPISearch}
+        setSearchTerm={setSearchTerm}
+        onHandleSearch={handleSearch}
       />
     </>
   );

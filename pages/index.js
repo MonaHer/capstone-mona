@@ -1,25 +1,9 @@
-import ArtworksList from "@/components/ArtworksList/index.js";
-import Navigation from "@/components/Navigation";
-import Header from "@/components/Header";
+import RandomCover from "@/components/RandomCover";
 
-export default function HomePage({
-  artworks,
-  onHandlePreviousPage,
-  onHandleNextPage,
-  offset,
-  rowsPerPage,
-}) {
+export default function HomePage({ artworks }) {
   return (
     <>
-      <Header />
-      <h1>SMK Notes</h1>
-
-      <ArtworksList artworks={artworks} />
-      {offset >= rowsPerPage && (
-        <button onClick={onHandlePreviousPage}>Previous Page</button>
-      )}
-      <button onClick={onHandleNextPage}>Next Page</button>
-      <Navigation />
+      <RandomCover artworks={artworks} />
     </>
   );
 }

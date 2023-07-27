@@ -82,13 +82,17 @@ export default function ArtworkInfo({ artwork, note, onNoteChange }) {
           </p>
         )}
         {labelText.length > 0 && (
-          <button onClick={toggleLabelText}>Show Text</button>
+          <StyledButton onClick={toggleLabelText}>
+            {isLabelTextVisible ? "Hide Text" : "Show Text"}
+          </StyledButton>
         )}
         {isLabelTextVisible && labelText.length > 0 && (
           <StyledLabelText>{labelText}</StyledLabelText>
         )}
         <br />
+        <br />
         <label htmlFor="personal-notes">My Notes</label>
+
         <StyledTextArea
           name="personal-notes"
           id="personal-notes"
@@ -109,8 +113,12 @@ const ArtworkContainer = styled.div`
 `;
 
 const StyledImageInfo = styled(Image)`
-  height: 100%;
-  width: 100%;
+  height: 50%;
+  width: 50%;
+  @media (max-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const StyledLabelText = styled.p`
@@ -149,4 +157,10 @@ const StyledTextArea = styled.textarea`
   );
   background-size: 74px 74px;
   font-family: var(--font);
+`;
+
+const StyledButton = styled.button`
+  background-color: black;
+  color: whitesmoke;
+  border-color: hotpink;
 `;

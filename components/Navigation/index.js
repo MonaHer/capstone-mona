@@ -3,20 +3,41 @@ import styled from "styled-components";
 import Icon from "@mdi/react";
 import { mdiMagnify } from "@mdi/js";
 import { mdiNotebookHeartOutline } from "@mdi/js";
-import { mdiFormatListBulleted } from "@mdi/js";
+import { mdiHomeOutline } from "@mdi/js";
+import { useRouter } from "next/router";
 
 export default function Navigation() {
+  const router = useRouter();
   return (
     <>
       <NavBar>
-        <StyledNavBarLink href={`/`}>
-          <StyledNavBarIcon path={mdiFormatListBulleted} size={2} />
+        <StyledNavBarLink href={`/`} active={router.pathname === "/"}>
+          <StyledNavBarIcon
+            path={mdiHomeOutline}
+            size={2}
+            active={router.pathname === "/"}
+          />
         </StyledNavBarLink>
-        <StyledNavBarLink href={`/search`}>
-          <StyledNavBarIcon path={mdiMagnify} size={2} />
+
+        <StyledNavBarLink
+          href={`/artworks-collection`}
+          active={router.pathname === "/artworks-collection"}
+        >
+          <StyledNavBarIcon
+            path={mdiMagnify}
+            size={2}
+            active={router.pathname === "/artworks-collection"}
+          />
         </StyledNavBarLink>
-        <StyledNavBarLink href={`/my-notes`}>
-          <StyledNavBarIcon path={mdiNotebookHeartOutline} size={2} />
+        <StyledNavBarLink
+          href={`/my-notes`}
+          active={router.pathname === "/my-notes"}
+        >
+          <StyledNavBarIcon
+            path={mdiNotebookHeartOutline}
+            size={2}
+            active={router.pathname === "/my-notes"}
+          />
         </StyledNavBarLink>
       </NavBar>
     </>
@@ -35,7 +56,7 @@ const NavBar = styled.div`
 `;
 
 const StyledNavBarLink = styled(Link)`
-  width: 33.3%;
+  width: 33%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -43,5 +64,5 @@ const StyledNavBarLink = styled(Link)`
 `;
 
 const StyledNavBarIcon = styled(Icon)`
-  color: whitesmoke;
+  color: ${({ active }) => (active ? "hotpink" : "whitesmoke")};
 `;
