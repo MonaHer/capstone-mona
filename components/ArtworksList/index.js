@@ -13,11 +13,14 @@ export default function ArtworksList({
     <StyledList>
       {artworks.items.map(({ id, image_thumbnail, titles }) => {
         const titleText = titles[0].title;
+        const isFavored = favorites.find(
+          (favorite) => favorite.favoriteID === id
+        );
         return (
           <StyledListItem key={id}>
             <FavoriteButton
-              onClick={onToggleFavorite}
-              isFavored={favorites.includes(id)}
+              onClick={() => onToggleFavorite(id)}
+              isFavored={isFavored !== undefined}
             />
             <Link href={`/artwork-info/${id}`}>
               <StyledImageList
