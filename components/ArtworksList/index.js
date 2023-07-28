@@ -16,8 +16,8 @@ export default function ArtworksList({
         return (
           <StyledListItem key={id}>
             <FavoriteButton
-              isFavored={favorites.includes(id)}
               onClick={onToggleFavorite}
+              isFavored={favorites.includes(id)}
             />
             <Link href={`/artwork-info/${id}`}>
               <StyledImageList

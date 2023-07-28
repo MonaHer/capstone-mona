@@ -26,7 +26,9 @@ export default function App({ Component, pageProps }) {
   });
   const [searchTerm, setSearchTerm] = useState("");
 
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useLocalStorageState("_FAVORITES", {
+    defaultValue: [],
+  });
 
   const {
     data: artworks,

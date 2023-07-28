@@ -29,7 +29,7 @@ export default function ArtworkInfoPage({
         artwork={currentArtworkInfo}
         note={currentArtworkNote}
         onNoteChange={onNoteChange}
-        favorites={favorites}
+        favorite={currenArtworkFavorite}
         onToggleFavorite={onToggleFavorite}
       />
     </>

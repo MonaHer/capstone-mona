@@ -18,14 +18,44 @@ export default function FavoritesPage({
     return { ...favorite, artworkImage, artworkTitle };
   });
 
+  //   return (
+  //     <>
+  //       <h1>My favorites</h1>
+  //       <StyledList>
+
+  //           {favoriteArtworks.map((favorite) => {
+  // return(
+  //             <StyledListItem key={favorite.favoriteID}>
+  //               <FavoriteButton onClick={onToggleFavorite} />
+  //               <Link href={`/artwork-info/${favorite.favoriteID}`}>
+  //                 <StyledImageList
+  //                   src={favorite.artworkImage}
+  //                   alt={"hardgecodet"}
+  //                   width={200}
+  //                   height={200}
+  //                 />
+  //               </Link>
+  //             </StyledListItem>
+  //           )}
+  //         ) : (
+  //           <p>No favorites</p>
+  //           })}
+  //       </StyledList>
+  //       <Navigation />
+  //     </>
+  //   );
+  // }
+
   return (
     <>
       <h1>My favorites</h1>
       <StyledList>
-        {favoriteArtworks.length > 0 ? (
-          favoriteArtworks.map((favorite) => (
+        {favoriteArtworks.map((favorite) => {
+          return (
             <StyledListItem key={favorite.favoriteID}>
-              <FavoriteButton onClick={onToggleFavorite} />
+              <FavoriteButton
+                onClick={() => onToggleFavorite(favorite.favoriteID)}
+              />
               <Link href={`/artwork-info/${favorite.favoriteID}`}>
                 <StyledImageList
                   src={favorite.artworkImage}
@@ -35,10 +65,9 @@ export default function FavoritesPage({
                 />
               </Link>
             </StyledListItem>
-          ))
-        ) : (
-          <p>No favorites</p>
-        )}
+          );
+        })}
+        {favoriteArtworks.length === 0 && <p>No favorites</p>}
       </StyledList>
       <Navigation />
     </>

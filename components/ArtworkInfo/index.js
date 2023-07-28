@@ -12,7 +12,7 @@ export default function ArtworkInfo({
   note,
   onNoteChange,
   onToggleFavorite,
-  favorites,
+  favorite,
 }) {
   const [isLabelTextVisible, setIsLabelTextVisible] = useState(false);
 
@@ -64,8 +64,8 @@ export default function ArtworkInfo({
     <>
       <ArtworkContainer>
         <FavoriteButton
-          onClick={onToggleFavorite}
-          isFavored={favorites.includes(id)}
+          onClick={() => onToggleFavorite(id)}
+          isFavored={favorite !== undefined}
         />
         <StyledImageInfo
           src={image_thumbnail}
