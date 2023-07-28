@@ -20,6 +20,8 @@ export default function ArtworkCollection({
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         onHandleSearch={onHandleSearch}
+        favorites={favorites}
+        onToggleFavorite={onToggleFavorite}
       />
       <ArtworksList
         artworks={artworks}

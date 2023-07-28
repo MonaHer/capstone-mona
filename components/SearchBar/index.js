@@ -70,11 +70,14 @@ export default function SearchBar({ artworks, onToggleFavorite, favorites }) {
       {!isNoSearchTerm && searchResults.length > 0 && (
         <StyledList>
           {searchResults.map(({ id, image_thumbnail, titleText }) => {
+            const isFavored = favorites.find(
+              (favorite) => favorite.favoriteID === id
+            );
             return (
               <StyledListItem key={id}>
                 <FavoriteButton
-                  isFavored={favorites.includes(artwork.id)}
-                  onClick={() => onToggleFavorite(artwork.id)}
+                  onClick={() => onToggleFavorite(id)}
+                  isFavored={isFavored !== undefined}
                 />
                 <Link href={`/artwork-info/${id}`}>
                   <StyledImage

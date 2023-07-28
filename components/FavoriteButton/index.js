@@ -19,5 +19,8 @@ export default function FavoriteButton({ isFavored, onClick }) {
 
 const StyledButton = styled.button`
   border: none;
-  display: transparent;
+  background-color: transparent;
+  position: relative;
+  /* top: 40px;
+  left: 335px; */
 `;

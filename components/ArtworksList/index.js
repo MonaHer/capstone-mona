@@ -45,6 +45,7 @@ const StyledList = styled.ul`
 const StyledImageList = styled(Image)`
   height: 50%;
   width: 50%;
+
   @media (max-width: 768px) {
     height: 90%;
     width: 90%;
