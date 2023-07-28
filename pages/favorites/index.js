@@ -13,6 +13,7 @@ export default function FavoritesPage({
     const artwork = artworks.items.find(
       (artwork) => artwork.id === favorite.favoriteID
     );
+
     const artworkImage = artwork ? artwork.image_thumbnail : "";
     const artworkTitle = artwork ? artwork.titles[0].title : "";
     return { ...favorite, artworkImage, artworkTitle };
@@ -55,6 +56,7 @@ export default function FavoritesPage({
             <StyledListItem key={favorite.favoriteID}>
               <FavoriteButton
                 onClick={() => onToggleFavorite(favorite.favoriteID)}
+                isFavored={true}
               />
               <Link href={`/artwork-info/${favorite.favoriteID}`}>
                 <StyledImageList

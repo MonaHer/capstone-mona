@@ -67,17 +67,31 @@ export default function App({ Component, pageProps }) {
     });
   }
 
+  // function handleToggleFavorite(favoriteID) {
+  //   setFavorites((favorites) => {
+  //     const isFavored = favorites.find(
+  //       (favorite) => favorite.favoriteID === favoriteID
+  //     );
+  //     if (isFavored) {
+  //       return favorites.map((favorite) =>
+  //         favorite.favoriteID !== favoriteID ? { ...favorite } : favorite
+  //       );
+  //     }
+  //     return [favorites, { favoriteID }];
+  //   });
+  // }
+
   function handleToggleFavorite(favoriteID) {
     setFavorites((favorites) => {
-      const isFavored = favorites.find(
+      const isFavored = favorites.some(
         (favorite) => favorite.favoriteID === favoriteID
       );
       if (isFavored) {
-        return favorites.map((favorite) =>
-          favorite.favoriteID !== favoriteID ? { ...favorite } : favorite
+        return favorites.filter(
+          (favorite) => favorite.favoriteID !== favoriteID
         );
       }
-      return [favorites, { favoriteID }];
+      return [...favorites, { favoriteID }];
     });
   }
 
