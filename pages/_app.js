@@ -26,6 +26,10 @@ export default function App({ Component, pageProps }) {
   });
   const [searchTerm, setSearchTerm] = useState("");
 
+  const [favorites, setFavorites] = useLocalStorageState("_FAVORITES", {
+    defaultValue: [],
+  });
+
   const {
     data: artworks,
     error,
@@ -63,6 +67,20 @@ export default function App({ Component, pageProps }) {
     });
   }
 
+  function handleToggleFavorite(favoriteID) {
+    setFavorites((favorites) => {
+      const isFavored = favorites.some(
+        (favorite) => favorite.favoriteID === favoriteID
+      );
+      if (isFavored) {
+        return favorites.filter(
+          (favorite) => favorite.favoriteID !== favoriteID
+        );
+      }
+      return [...favorites, { favoriteID }];
+    });
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -77,6 +95,8 @@ export default function App({ Component, pageProps }) {
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         onHandleSearch={handleSearch}
+        favorites={favorites}
+        onToggleFavorite={handleToggleFavorite}
       />
     </>
   );

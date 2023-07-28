@@ -3,7 +3,8 @@ import styled from "styled-components";
 import Icon from "@mdi/react";
 import { mdiMagnify } from "@mdi/js";
 import { mdiNotebookHeartOutline } from "@mdi/js";
-import { mdiHomeOutline } from "@mdi/js";
+import { mdiCardsHeart } from "@mdi/js";
+import { mdiShimmer } from "@mdi/js";
 import { useRouter } from "next/router";
 
 export default function Navigation() {
@@ -13,7 +14,7 @@ export default function Navigation() {
       <NavBar>
         <StyledNavBarLink href={`/`} active={router.pathname === "/"}>
           <StyledNavBarIcon
-            path={mdiHomeOutline}
+            path={mdiShimmer}
             size={2}
             active={router.pathname === "/"}
           />
@@ -29,6 +30,7 @@ export default function Navigation() {
             active={router.pathname === "/artworks-collection"}
           />
         </StyledNavBarLink>
+
         <StyledNavBarLink
           href={`/my-notes`}
           active={router.pathname === "/my-notes"}
@@ -37,6 +39,16 @@ export default function Navigation() {
             path={mdiNotebookHeartOutline}
             size={2}
             active={router.pathname === "/my-notes"}
+          />
+        </StyledNavBarLink>
+        <StyledNavBarLink
+          href={`/favorites`}
+          active={router.pathname === "/favorites"}
+        >
+          <StyledNavBarIcon
+            path={mdiCardsHeart}
+            size={2}
+            active={router.pathname === "/favorites"}
           />
         </StyledNavBarLink>
       </NavBar>
@@ -56,7 +68,7 @@ const NavBar = styled.div`
 `;
 
 const StyledNavBarLink = styled(Link)`
-  width: 33%;
+  width: 25%;
   height: 100%;
   display: flex;
   align-items: center;

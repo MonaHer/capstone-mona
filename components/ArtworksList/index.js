@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 export default function ArtworksList({ artworks }) {
   return (
@@ -30,9 +29,10 @@ const StyledList = styled.ul`
   padding: 0;
 `;
 
-const StyledImageList = styled(LazyLoadImage)`
+const StyledImageList = styled(Image)`
   height: 50%;
   width: 50%;
+
   @media (max-width: 768px) {
     height: 90%;
     width: 90%;

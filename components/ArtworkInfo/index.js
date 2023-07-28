@@ -1,12 +1,26 @@
-import Image from "next/image";
-import styled from "styled-components";
 import { useState } from "react";
 import Navigation from "../Navigation";
-import Icon from "@mdi/react";
 import { mdiMapMarkerRadiusOutline } from "@mdi/js";
 import { mdiRulerSquare } from "@mdi/js";
+import { mdiDrawPen } from "@mdi/js";
+import FavoriteButton from "../FavoriteButton";
+import {
+  StyledLabelText,
+  StyledIcon,
+  StyledArtworkTitle,
+  StyledTextArea,
+  StyledButton,
+  ArtworkContainer,
+  StyledImageInfo,
+} from "./styles";
 
-export default function ArtworkInfo({ artwork, note, onNoteChange }) {
+export default function ArtworkInfo({
+  artwork,
+  note,
+  onNoteChange,
+  onToggleFavorite,
+  favorite,
+}) {
   const [isLabelTextVisible, setIsLabelTextVisible] = useState(false);
 
   const toggleLabelText = function () {
@@ -81,6 +95,12 @@ export default function ArtworkInfo({ artwork, note, onNoteChange }) {
             {current_location_name}
           </p>
         )}
+        <FavoriteButton
+          onClick={() => onToggleFavorite(id)}
+          isFavored={favorite !== undefined}
+        />
+        <br />
+        <br />
         {labelText.length > 0 && (
           <StyledButton onClick={toggleLabelText}>
             {isLabelTextVisible ? "Hide Text" : "Show Text"}
@@ -91,7 +111,9 @@ export default function ArtworkInfo({ artwork, note, onNoteChange }) {
         )}
         <br />
         <br />
-        <label htmlFor="personal-notes">My Notes</label>
+        <label htmlFor="personal-notes">
+          <StyledIcon path={mdiDrawPen} size={1.5} />
+        </label>
 
         <StyledTextArea
           name="personal-notes"
@@ -106,61 +128,3 @@ export default function ArtworkInfo({ artwork, note, onNoteChange }) {
     </>
   );
 }
-
-const ArtworkContainer = styled.div`
-  position: relative;
-  margin: 20px;
-`;
-
-const StyledImageInfo = styled(Image)`
-  height: 50%;
-  width: 50%;
-  @media (max-width: 768px) {
-    height: 100%;
-    width: 100%;
-  }
-`;
-
-const StyledLabelText = styled.p`
-  text-align: justify;
-  line-height: 20px;
-`;
-
-const StyledIcon = styled(Icon)`
-  color: whitesmoke;
-`;
-
-const StyledArtworkTitle = styled.p`
-  font-weight: bold;
-`;
-
-const StyledTextArea = styled.textarea`
-  appearance: none;
-  width: 100%;
-  min-height: 100%;
-  border: none;
-  font-size: 24px;
-  line-height: 37px;
-  padding: 37px;
-  resize: none;
-  font-family: inherit;
-  border: 0;
-  border-radius: 0;
-  background-image: linear-gradient(
-    0deg,
-    #d6caa3 2.7%,
-    #f6f0cf 2.7%,
-    #f6f0cf 50%,
-    #d6caa3 50%,
-    #f6f0cf 52.7%,
-    #f6f0cf 100%
-  );
-  background-size: 74px 74px;
-  font-family: var(--font);
-`;
-
-const StyledButton = styled.button`
-  background-color: black;
-  color: whitesmoke;
-  border-color: hotpink;
-`;

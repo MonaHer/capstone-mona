@@ -1,5 +1,4 @@
 import ArtworksList from "@/components/ArtworksList/index.js";
-import Header from "@/components/Header";
 import Navigation from "@/components/Navigation";
 import SearchBar from "@/components/SearchBar";
 import { styled } from "styled-components";
@@ -12,7 +11,6 @@ export default function ArtworkCollection({
 }) {
   return (
     <>
-      {/* <Header /> */}
       <SearchBar
         artworks={artworks}
         searchTerm={searchTerm}

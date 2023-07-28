@@ -1,12 +1,22 @@
 import ArtworkInfo from "@/components/ArtworkInfo/index.js";
 import { useRouter } from "next/router";
 
-export default function ArtworkInfoPage({ artworks, onNoteChange, notes }) {
+export default function ArtworkInfoPage({
+  artworks,
+  onNoteChange,
+  notes,
+  favorites,
+  onToggleFavorite,
+}) {
   const router = useRouter();
   const { id } = router.query;
   const currentArtworkInfo = artworks.items.find((item) => item.id === id);
 
   const currentArtworkNote = notes.find((note) => note.artworkID === id);
+
+  const currenArtworkFavorite = favorites.find(
+    (favorite) => favorite.favoriteID === id
+  );
 
   if (!currentArtworkInfo) {
     return null;
@@ -19,6 +29,8 @@ export default function ArtworkInfoPage({ artworks, onNoteChange, notes }) {
         artwork={currentArtworkInfo}
         note={currentArtworkNote}
         onNoteChange={onNoteChange}
+        favorite={currenArtworkFavorite}
+        onToggleFavorite={onToggleFavorite}
       />
     </>
   );

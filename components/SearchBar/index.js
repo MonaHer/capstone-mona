@@ -6,7 +6,7 @@ import useLocalStorageState from "use-local-storage-state";
 import Icon from "@mdi/react";
 import { mdiMagnify } from "@mdi/js";
 
-export default function SearchBar({ artworks }) {
+export default function SearchBar({ artworks, onToggleFavorite, favorites }) {
   const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm", {
     defaultValue: "",
   });
@@ -121,6 +121,10 @@ const StyledSearchInput = styled.input`
 
   &:focus {
     outline: 2px solid hotpink;
+  }
+
+  ::placeholder {
+    color: whitesmoke;
   }
 `;
 
