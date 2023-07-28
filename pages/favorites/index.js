@@ -1,14 +1,9 @@
 import { styled } from "styled-components";
 import Link from "next/link";
-import FavoriteButton from "@/components/FavoriteButton";
 import Image from "next/image";
 import Navigation from "@/components/Navigation";
 
-export default function FavoritesPage({
-  favorites,
-  onToggleFavorite,
-  artworks,
-}) {
+export default function FavoritesPage({ favorites, artworks }) {
   const favoriteArtworks = favorites.map((favorite) => {
     const artwork = artworks.items.find(
       (artwork) => artwork.id === favorite.favoriteID
@@ -19,34 +14,6 @@ export default function FavoritesPage({
     return { ...favorite, artworkImage, artworkTitle };
   });
 
-  //   return (
-  //     <>
-  //       <h1>My favorites</h1>
-  //       <StyledList>
-
-  //           {favoriteArtworks.map((favorite) => {
-  // return(
-  //             <StyledListItem key={favorite.favoriteID}>
-  //               <FavoriteButton onClick={onToggleFavorite} />
-  //               <Link href={`/artwork-info/${favorite.favoriteID}`}>
-  //                 <StyledImageList
-  //                   src={favorite.artworkImage}
-  //                   alt={"hardgecodet"}
-  //                   width={200}
-  //                   height={200}
-  //                 />
-  //               </Link>
-  //             </StyledListItem>
-  //           )}
-  //         ) : (
-  //           <p>No favorites</p>
-  //           })}
-  //       </StyledList>
-  //       <Navigation />
-  //     </>
-  //   );
-  // }
-
   return (
     <>
       <h1>My favorites</h1>
@@ -54,14 +21,10 @@ export default function FavoritesPage({
         {favoriteArtworks.map((favorite) => {
           return (
             <StyledListItem key={favorite.favoriteID}>
-              <FavoriteButton
-                onClick={() => onToggleFavorite(favorite.favoriteID)}
-                isFavored={true}
-              />
               <Link href={`/artwork-info/${favorite.favoriteID}`}>
                 <StyledImageList
                   src={favorite.artworkImage}
-                  alt={"hardgecodet"}
+                  alt={favorite.artworkTitle}
                   width={200}
                   height={200}
                 />

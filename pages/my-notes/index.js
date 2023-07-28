@@ -3,6 +3,9 @@ import Navigation from "@/components/Navigation";
 import Link from "next/link";
 import styled from "styled-components";
 import { useState } from "react";
+import Icon from "@mdi/react";
+import { mdiChevronDown } from "@mdi/js";
+import { mdiChevronUp } from "@mdi/js";
 
 export default function MyNotesPage({ notes, artworks }) {
   const [showNoteText, setShowNoteText] = useState(false);
@@ -32,9 +35,13 @@ export default function MyNotesPage({ notes, artworks }) {
                     <StyledLink href={`/artwork-info/${note.artworkID}`}>
                       <h2>{note.artworkTitle}</h2>
                     </StyledLink>
-                    <button onClick={toggleNoteText}>
-                      {showNoteText ? "Show Note" : "Hide Note"}
-                    </button>
+                    <StyledButton onClick={toggleNoteText}>
+                      {showNoteText ? (
+                        <Icon path={mdiChevronUp} size={1} />
+                      ) : (
+                        <Icon path={mdiChevronDown} size={1} />
+                      )}
+                    </StyledButton>
                     {showNoteText && (
                       <StyledNoteText>{note.text}</StyledNoteText>
                     )}
@@ -66,6 +73,11 @@ const StyledLink = styled(Link)`
 
 const StyledNoteText = styled.p`
   color: black;
+`;
+
+const StyledButton = styled.button`
+  border: none;
+  background-color: transparent;
 `;
 
 const StyledNoteTextWrapper = styled.div`

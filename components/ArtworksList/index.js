@@ -2,26 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
 
-import FavoriteButton from "../FavoriteButton";
-
-export default function ArtworksList({
-  artworks,
-  onToggleFavorite,
-  favorites,
-}) {
+export default function ArtworksList({ artworks }) {
   return (
     <StyledList>
       {artworks.items.map(({ id, image_thumbnail, titles }) => {
         const titleText = titles[0].title;
-        const isFavored = favorites.find(
-          (favorite) => favorite.favoriteID === id
-        );
         return (
           <StyledListItem key={id}>
-            <FavoriteButton
-              onClick={() => onToggleFavorite(id)}
-              isFavored={isFavored !== undefined}
-            />
             <Link href={`/artwork-info/${id}`}>
               <StyledImageList
                 src={image_thumbnail}
