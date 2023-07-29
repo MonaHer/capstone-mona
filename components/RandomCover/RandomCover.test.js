@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ArtworksList from ".";
-import { toBeInTheDocument } from "@testing-library/jest-dom/matchers";
+import RandomCover from ".";
 
 const data = {
   items: [
@@ -24,14 +23,16 @@ const data = {
   ],
 };
 
-test("renders list", () => {
-  render(<ArtworksList artworks={data} />);
-  const list = screen.getByRole("list");
-  expect(list).toBeInTheDocument();
-});
+jest.mock("next/router", () => ({
+  useRouter: () => ({
+    query: {
+      id: "123",
+    },
+  }),
+}));
 
 test("renders image", () => {
-  render(<ArtworksList artworks={data} />);
+  render(<RandomCover artworks={data} />);
   const image = screen.getByRole("img");
   expect(image).toBeInTheDocument();
 });
