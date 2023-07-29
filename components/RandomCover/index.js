@@ -1,21 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { styled } from "styled-components";
-import { useRouter } from "next/router";
 import LoadingAnimation from "../LoadingAnimation";
-import { useState } from "react";
 
 export default function RandomCover({ artworks }) {
-  const [showLoadingAnimation, setShowLoadingAnimation] = useState(true);
-  const router = useRouter();
   const filteredRandomArtworks = artworks.items.filter(
     (item) =>
       item.dimensions && item.dimensions[0].value > item.dimensions[1].value
   );
-
-  const hideLoadingAnimation = () => {
-    setShowLoadingAnimation(false);
-  };
 
   if (filteredRandomArtworks.length === 0) {
     return null;
@@ -26,12 +18,6 @@ export default function RandomCover({ artworks }) {
       Math.floor(Math.random() * filteredRandomArtworks.length)
     ];
 
-  setTimeout(hideLoadingAnimation, 5000);
-
-  function redirect() {
-    router.push(`/artworks-collection`);
-  }
-
   return (
     <>
       <FullScreenImageContainer>
@@ -41,7 +27,7 @@ export default function RandomCover({ artworks }) {
           width={200}
           height={200}
         />
-        <LoadingAnimationOverlay show={showLoadingAnimation}>
+        <LoadingAnimationOverlay>
           <LoadingAnimation />
         </LoadingAnimationOverlay>
         <StyledLinkOverlay>
