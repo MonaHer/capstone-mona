@@ -6,7 +6,7 @@ import useLocalStorageState from "use-local-storage-state";
 import Icon from "@mdi/react";
 import { mdiMagnify } from "@mdi/js";
 
-export default function SearchBar({ artworks, onToggleFavorite, favorites }) {
+export default function SearchBar({ artworks }) {
   const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm", {
     defaultValue: "",
   });

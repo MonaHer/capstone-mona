@@ -12,11 +12,11 @@ const data = {
       creator_date_of_death: "1920-01-24",
     },
   ],
-  dimensions: [{ value: "100" }, { value: "80" }],
+  dimensions: [{ value: "95.4" }, { value: "56.2" }],
   titles: [{ title: "Alice" }],
-  current_location_name: "Museum",
-  labels: [{ text: "Label Text" }],
-  production_dates_notes: ["Værkdatering: 1909"],
+  current_location_name: "Sal 213",
+  labels: [{ text: "Information" }],
+  production_dates_notes: ["Ca. 1918"],
 };
 
 jest.mock("next/router", () => ({
@@ -27,8 +27,56 @@ jest.mock("next/router", () => ({
   }),
 }));
 
-test("renders artworks title", () => {
+test("renders image", () => {
+  render(<ArtworkInfo artwork={data} />);
+  const image = screen.getByRole("img");
+  expect(image).toBeInTheDocument();
+});
+
+test("renders artwork's title", () => {
   render(<ArtworkInfo artwork={data} />);
   const titleText = screen.getByText(/alice/i);
   expect(titleText).toBeInTheDocument();
+});
+
+test("renders date of production", () => {
+  render(<ArtworkInfo artwork={data} />);
+  const production_dates_notes = screen.getByText(/ca. 1918/i);
+  expect(production_dates_notes).toBeInTheDocument();
+});
+
+test("renders creator's forename", () => {
+  render(<ArtworkInfo artwork={data} />);
+  const creator_forename = screen.getByText(/amedeo/i);
+  expect(creator_forename).toBeInTheDocument();
+});
+
+test("renders creator's surname", () => {
+  render(<ArtworkInfo artwork={data} />);
+  const creator_surname = screen.getByText(/modigliani/i);
+  expect(creator_surname).toBeInTheDocument();
+});
+
+test("renders creator's birth date", () => {
+  render(<ArtworkInfo artwork={data} />);
+  const creator_date_of_birth = screen.getByText(/1884/i);
+  expect(creator_date_of_birth).toBeInTheDocument();
+});
+
+test("renders creator's death date", () => {
+  render(<ArtworkInfo artwork={data} />);
+  const creator_date_of_death = screen.getByText(/1920/i);
+  expect(creator_date_of_death).toBeInTheDocument();
+});
+
+test("renders artwork's dimensions", () => {
+  render(<ArtworkInfo artwork={data} />);
+  const dimensions = screen.getByText(/95.4/i);
+  expect(dimensions).toBeInTheDocument();
+});
+
+test("renders location in museum", () => {
+  render(<ArtworkInfo artwork={data} />);
+  const current_location_name = screen.getByText(/Sal 213/i);
+  expect(current_location_name).toBeInTheDocument();
 });

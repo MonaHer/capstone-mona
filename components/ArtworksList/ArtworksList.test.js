@@ -1,6 +1,5 @@
 import { render, screen } from "@testing-library/react";
 import ArtworksList from ".";
-import { toBeInTheDocument } from "@testing-library/jest-dom/matchers";
 
 const data = {
   items: [
