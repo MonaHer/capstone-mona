@@ -44,8 +44,8 @@ export default function RandomCover({ artworks }) {
 }
 
 const StyledImage = styled(Image)`
-  height: 50%;
-  width: 50%;
+  height: 40%;
+  width: 40%;
   @media (max-width: 768px) {
     height: 100%;
     width: 100%;

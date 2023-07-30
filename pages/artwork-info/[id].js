@@ -1,5 +1,4 @@
 import ArtworkInfo from "@/components/ArtworkInfo/index.js";
-
 import { useRouter } from "next/router";
 
 export default function ArtworkInfoPage({
