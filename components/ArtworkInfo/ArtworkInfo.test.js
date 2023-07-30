@@ -2,8 +2,9 @@ import { render, screen } from "@testing-library/react";
 import ArtworkInfo from ".";
 
 const data = {
-  id: "123",
-  image_thumbnail: "https://example.com/image.jpg",
+  id: "1170032793_object",
+  image_thumbnail:
+    "https://iip-thumb.smk.dk/iiif/jp2/xd07gw96b_KMSr145__1_-crop.tif.jp2/full/!1024,/0/default.jpg",
   production: [
     {
       creator_forename: "Amedeo",

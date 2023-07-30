@@ -4,11 +4,11 @@ import Link from "next/link";
 import styled from "styled-components";
 import { useState } from "react";
 import Icon from "@mdi/react";
-import { mdiChevronDown } from "@mdi/js";
-import { mdiChevronUp } from "@mdi/js";
+import { mdiEyeOffOutline } from "@mdi/js";
+import { mdiEyeOutline } from "@mdi/js";
 
 export default function MyNotesPage({ notes, artworks }) {
-  const [showNoteText, setShowNoteText] = useState(false);
+  const [showNoteTextMap, setShowNoteTextMap] = useState({});
 
   const notesWithArtworkTitle = notes.map((note) => {
     const artwork = artworks.items.find(
@@ -18,13 +18,23 @@ export default function MyNotesPage({ notes, artworks }) {
     return { ...note, artworkTitle };
   });
 
-  function toggleNoteText() {
-    setShowNoteText(!showNoteText);
+  // function toggleNoteText() {
+  //   setShowNoteText(!showNoteText);
+  // }
+
+  function toggleNoteText(noteID) {
+    setShowNoteTextMap((prevMap) => ({
+      ...prevMap,
+      [noteID]: !prevMap[noteID],
+    }));
   }
 
   return (
     <>
       <Header />
+
+      <StyledTitle>My Notes</StyledTitle>
+
       <StyledList>
         {notesWithArtworkTitle.map((note) => {
           return (
@@ -35,14 +45,18 @@ export default function MyNotesPage({ notes, artworks }) {
                     <StyledLink href={`/artwork-info/${note.artworkID}`}>
                       <h2>{note.artworkTitle}</h2>
                     </StyledLink>
-                    <StyledButton onClick={toggleNoteText}>
-                      {showNoteText ? (
-                        <Icon path={mdiChevronUp} size={1} />
-                      ) : (
-                        <Icon path={mdiChevronDown} size={1} />
-                      )}
-                    </StyledButton>
-                    {showNoteText && (
+                    <StyledButtonWrapper>
+                      <StyledButton
+                        onClick={() => toggleNoteText(note.artworkID)}
+                      >
+                        {showNoteTextMap[note.artworkID] ? (
+                          <Icon path={mdiEyeOffOutline} size={1} />
+                        ) : (
+                          <Icon path={mdiEyeOutline} size={1} />
+                        )}
+                      </StyledButton>
+                    </StyledButtonWrapper>
+                    {showNoteTextMap[note.artworkID] && (
                       <StyledNoteText>{note.text}</StyledNoteText>
                     )}
                   </StyledNoteTextWrapper>
@@ -53,11 +67,25 @@ export default function MyNotesPage({ notes, artworks }) {
             </li>
           );
         })}
+
+        {notesWithArtworkTitle.length === 0 && (
+          <StyledNoResultsContainer>
+            <p>No notes taken yet.</p>
+          </StyledNoResultsContainer>
+        )}
       </StyledList>
       <Navigation />
     </>
   );
 }
+
+const StyledTitle = styled.h2`
+  border: 1px solid whitesmoke;
+  padding: 10px;
+  text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+`;
 
 const StyledList = styled.ul`
   list-style-type: none;
@@ -76,8 +104,13 @@ const StyledNoteText = styled.p`
 `;
 
 const StyledButton = styled.button`
+  margin-top: -15px;
   border: none;
   background-color: transparent;
+`;
+
+const StyledButtonWrapper = styled.div`
+  display: flex;
 `;
 
 const StyledNoteTextWrapper = styled.div`
@@ -105,4 +138,10 @@ const StyledNoteTextWrapper = styled.div`
     #f6f0cf 100%
   );
   background-size: 74px 74px;
+`;
+
+const StyledNoResultsContainer = styled.div`
+  text-align: center;
+  margin-top: 140px;
+  margin-bottom: 80px;
 `;

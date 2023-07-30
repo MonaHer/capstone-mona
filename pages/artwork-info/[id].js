@@ -1,4 +1,5 @@
 import ArtworkInfo from "@/components/ArtworkInfo/index.js";
+
 import { useRouter } from "next/router";
 
 export default function ArtworkInfoPage({
@@ -24,7 +25,6 @@ export default function ArtworkInfoPage({
 
   return (
     <>
-      <h1>ArtworkInfoPage</h1>
       <ArtworkInfo
         artwork={currentArtworkInfo}
         note={currentArtworkNote}

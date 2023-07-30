@@ -1,9 +1,11 @@
 import { useState } from "react";
 import Navigation from "../Navigation";
+import Header from "../Header";
 import { mdiMapMarkerRadiusOutline } from "@mdi/js";
 import { mdiRulerSquare } from "@mdi/js";
 import { mdiDrawPen } from "@mdi/js";
 import FavoriteButton from "../FavoriteButton";
+
 import {
   StyledLabelText,
   StyledIcon,
@@ -12,6 +14,7 @@ import {
   StyledButton,
   ArtworkContainer,
   StyledImageInfo,
+  BoldText,
 } from "./styles";
 
 export default function ArtworkInfo({
@@ -69,6 +72,7 @@ export default function ArtworkInfo({
 
   return (
     <>
+      <Header />
       <ArtworkContainer>
         <StyledImageInfo
           src={image_thumbnail}
@@ -111,8 +115,8 @@ export default function ArtworkInfo({
         )}
         <br />
         <br />
-        <label htmlFor="personal-notes">
-          <StyledIcon path={mdiDrawPen} size={1.5} />
+        <label htmlFor="personal-notes" style={{ fontSize: "19px" }}>
+          <BoldText>My Notes</BoldText>
         </label>
 
         <StyledTextArea

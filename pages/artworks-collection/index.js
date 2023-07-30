@@ -17,6 +17,7 @@ export default function ArtworkCollection({
         setSearchTerm={setSearchTerm}
         onHandleSearch={onHandleSearch}
       />
+
       <ArtworksList artworks={artworks} />
       <Navigation />
     </>

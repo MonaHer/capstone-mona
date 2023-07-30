@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 import Navigation from "@/components/Navigation";
+import Header from "@/components/Header";
 
 export default function FavoritesPage({ favorites, artworks }) {
   const favoriteArtworks = favorites.map((favorite) => {
@@ -16,7 +17,9 @@ export default function FavoritesPage({ favorites, artworks }) {
 
   return (
     <>
-      <h1>My favorites</h1>
+      <Header />
+      <StyledTitle>My Favorites Collection</StyledTitle>
+
       <StyledList>
         {favoriteArtworks.map((favorite) => {
           return (
@@ -32,12 +35,24 @@ export default function FavoritesPage({ favorites, artworks }) {
             </StyledListItem>
           );
         })}
-        {favoriteArtworks.length === 0 && <p>No favorites</p>}
+        {favoriteArtworks.length === 0 && (
+          <StyledNoResultsContainer>
+            <p>No favorites yet.</p>
+          </StyledNoResultsContainer>
+        )}
       </StyledList>
       <Navigation />
     </>
   );
 }
+
+const StyledTitle = styled.h2`
+  border: 1px solid whitesmoke;
+  padding: 10px;
+  text-align: center;
+  margin-left: 5%;
+  margin-right: 5%;
+`;
 
 const StyledListItem = styled.li`
   text-align: center;
@@ -55,4 +70,10 @@ const StyledImageList = styled(Image)`
     height: 90%;
     width: 90%;
   }
+`;
+
+const StyledNoResultsContainer = styled.div`
+  text-align: center;
+  margin-top: 140px;
+  margin-bottom: 80px;
 `;

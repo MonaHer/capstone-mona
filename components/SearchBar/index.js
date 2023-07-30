@@ -67,25 +67,33 @@ export default function SearchBar({ artworks }) {
       />
 
       {!isNoSearchTerm && searchResults.length > 0 && (
-        <StyledList>
-          {searchResults.map(({ id, image_thumbnail, titleText }) => {
-            return (
-              <StyledListItem key={id}>
-                <Link href={`/artwork-info/${id}`}>
-                  <StyledImage
-                    src={image_thumbnail}
-                    alt={titleText}
-                    width={200}
-                    height={200}
-                  />
-                </Link>
-              </StyledListItem>
-            );
-          })}
-        </StyledList>
+        <>
+          <StyledList>
+            {searchResults.map(({ id, image_thumbnail, titleText }) => {
+              return (
+                <>
+                  <StyledListItem key={id}>
+                    <Link href={`/artwork-info/${id}`}>
+                      <StyledImage
+                        src={image_thumbnail}
+                        alt={titleText}
+                        width={200}
+                        height={200}
+                      />
+                    </Link>
+                  </StyledListItem>
+                </>
+              );
+            })}
+          </StyledList>
+          <hr />
+        </>
       )}
+
       {searchPerformed && searchResults.length === 0 && (
-        <p>No results found.</p>
+        <StyledNoResultsContainer>
+          <p>No results found.</p>
+        </StyledNoResultsContainer>
       )}
     </>
   );
@@ -119,12 +127,12 @@ const StyledSearchInput = styled.input`
   padding: 10px;
   margin: 20px auto;
 
-  &:focus {
-    outline: 2px solid hotpink;
+  &::placeholder {
+    color: whitesmoke;
   }
 
-  ::placeholder {
-    color: whitesmoke;
+  &:focus {
+    outline: 2px solid hotpink;
   }
 `;
 
@@ -139,4 +147,10 @@ const StyledMagnifyIcon = styled(Icon)`
     left: 300px;
     top: 43px;
   }
+`;
+
+const StyledNoResultsContainer = styled.div`
+  text-align: center;
+  margin-top: 140px;
+  margin-bottom: 80px;
 `;

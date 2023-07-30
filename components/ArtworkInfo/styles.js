@@ -43,7 +43,7 @@ export const StyledTextArea = styled.textarea`
 export const StyledButton = styled.button`
   background-color: black;
   color: whitesmoke;
-  border-color: hotpink;
+  border-color: pink;
 `;
 
 export const ArtworkContainer = styled.div`
@@ -58,4 +58,10 @@ export const StyledImageInfo = styled(Image)`
     height: 100%;
     width: 100%;
   }
+`;
+
+export const BoldText = styled.p`
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+  font-size: 24px;
 `;
