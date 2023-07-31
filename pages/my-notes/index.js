@@ -18,10 +18,6 @@ export default function MyNotesPage({ notes, artworks }) {
     return { ...note, artworkTitle };
   });
 
-  // function toggleNoteText() {
-  //   setShowNoteText(!showNoteText);
-  // }
-
   function toggleNoteText(noteID) {
     setShowNoteTextMap((prevMap) => ({
       ...prevMap,

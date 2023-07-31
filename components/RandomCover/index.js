@@ -23,7 +23,7 @@ export default function RandomCover({ artworks }) {
       <FullScreenImageContainer>
         <StyledImage
           src={randomArtwork.image_thumbnail}
-          alt={randomArtwork.titleText}
+          alt={randomArtwork.titles[0].title}
           width={200}
           height={200}
         />

@@ -3,7 +3,6 @@ import Navigation from "../Navigation";
 import Header from "../Header";
 import { mdiMapMarkerRadiusOutline } from "@mdi/js";
 import { mdiRulerSquare } from "@mdi/js";
-import { mdiDrawPen } from "@mdi/js";
 import FavoriteButton from "../FavoriteButton";
 
 import {

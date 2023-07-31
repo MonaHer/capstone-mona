@@ -69,7 +69,10 @@ export default function SearchBar({ artworks }) {
       {!isNoSearchTerm && searchResults.length > 0 && (
         <>
           <StyledList>
-            {searchResults.map(({ id, image_thumbnail, titleText }) => {
+            {searchResults.map(({ filteredArtwork, id, image_thumbnail }) => {
+              const titleText = filteredArtwork
+                ? filteredArtwork.titles[0].title
+                : "";
               return (
                 <>
                   <StyledListItem key={id}>
@@ -86,6 +89,11 @@ export default function SearchBar({ artworks }) {
               );
             })}
           </StyledList>
+
+          <hr />
+          <StyledEndofSearchContainer>
+            End of search results.
+          </StyledEndofSearchContainer>
           <hr />
         </>
       )}
@@ -153,4 +161,8 @@ const StyledNoResultsContainer = styled.div`
   text-align: center;
   margin-top: 140px;
   margin-bottom: 80px;
+`;
+
+const StyledEndofSearchContainer = styled.div`
+  text-align: center;
 `;
