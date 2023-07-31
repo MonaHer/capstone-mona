@@ -1,9 +1,7 @@
-import LoadingAnimation from "../LoadingAnimation";
 import {
   StyledImage,
   FullScreenImageContainer,
   TextOverlay,
-  LoadingAnimationOverlay,
   StyledLink,
   StyledLinkOverlay,
 } from "./styles";
@@ -32,9 +30,7 @@ export default function RandomCover({ artworks }) {
           width={200}
           height={200}
         />
-        <LoadingAnimationOverlay>
-          <LoadingAnimation />
-        </LoadingAnimationOverlay>
+
         <StyledLinkOverlay>
           <StyledLink href={`/artwork-info/${randomArtwork.id}`}>
             START

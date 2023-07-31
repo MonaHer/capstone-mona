@@ -11,8 +11,8 @@ export const StyledList = styled.ul`
 `;
 
 export const StyledImage = styled(Image)`
-  height: 40%;
-  width: 40%;
+  height: 30%;
+  width: 30%;
   @media (max-width: 768px) {
     height: 85%;
     width: 85%;

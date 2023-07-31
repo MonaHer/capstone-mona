@@ -3,8 +3,14 @@ import Image from "next/image";
 import { styled } from "styled-components";
 
 export const StyledImage = styled(Image)`
-  height: 40%;
-  width: 40%;
+  @media (min-width: 769px) {
+    height: 30%;
+    width: 30%;
+    margin: auto;
+    display: block;
+    margin-top: 7%;
+  }
+
   @media (max-width: 768px) {
     height: 100%;
     width: 100%;
@@ -27,33 +33,53 @@ export const FullScreenImageContainer = styled.div`
 `;
 
 export const TextOverlay = styled.div`
-  position: absolute;
-  width: 80%;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: whitesmoke;
-  font-size: 24px;
-  text-align: center;
-  border: 1px solid whitesmoke;
-`;
+  @media (min-width: 769px) {
+    position: absolute;
+    width: 40%;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: whitesmoke;
+    font-size: 30px;
+    text-align: center;
+    border: 2px solid whitesmoke;
+  }
 
-export const LoadingAnimationOverlay = styled.div`
-  position: absolute;
-  width: 10%;
-  top: 90%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  @media (max-width: 768px) {
+    position: absolute;
+    width: 80%;
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: whitesmoke;
+    font-size: 24px;
+    text-align: center;
+    border: 1px solid whitesmoke;
+  }
 `;
 
 export const StyledLink = styled(Link)`
-  color: whitesmoke;
+  @media (min-width: 769px) {
+    color: whitesmoke;
+    font-size: 25px;
+  }
+
+  @media (max-width: 768px) {
+    color: whitesmoke;
+  }
 `;
 
 export const StyledLinkOverlay = styled.div`
   position: absolute;
-  width: 10%;
-  top: 95%;
-  left: 49%;
-  transform: translate(-50%, -50%);
+  width: 100%;
+  bottom: 9%;
+  left: 0;
+  text-align: center;
+
+  @media (min-width: 769px) {
+    position: static;
+    display: flex;
+    justify-content: center;
+    bottom: 9%;
+  }
 `;
