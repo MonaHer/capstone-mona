@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import Icon from "@mdi/react";
+import Image from "next/image";
 
 export const StyledLabelText = styled.p`
   text-align: justify;
@@ -8,6 +9,15 @@ export const StyledLabelText = styled.p`
 
 export const StyledIcon = styled(Icon)`
   color: whitesmoke;
+`;
+
+export const StyledImageInfo = styled(Image)`
+  height: 50%;
+  width: 50%;
+  @media (max-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export const StyledArtworkTitle = styled.p`

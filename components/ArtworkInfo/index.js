@@ -13,9 +13,8 @@ import {
   StyledTextButton,
   ArtworkContainer,
   BoldText,
+  StyledImageInfo,
 } from "./styles";
-
-import { StyledImage } from "../StyledImageList";
 
 export default function ArtworkInfo({
   artwork,
@@ -74,7 +73,7 @@ export default function ArtworkInfo({
     <>
       <Header />
       <ArtworkContainer>
-        <StyledImage
+        <StyledImageInfo
           src={image_thumbnail}
           alt={titleText}
           height={200}

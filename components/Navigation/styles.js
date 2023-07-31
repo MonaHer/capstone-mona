@@ -22,7 +22,7 @@ export const StyledNavBarLink = styled(Link)`
 `;
 
 export const StyledNavBarIcon = styled(Icon)`
-  color: ${({ active }) => (active ? "hotpink" : "whitesmoke")};
+  color: ${({ isActive }) => (isActive ? "hotpink" : "whitesmoke")};
 
   &:hover {
     color: pink;

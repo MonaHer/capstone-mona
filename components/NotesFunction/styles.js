@@ -32,7 +32,7 @@ export const StyledNoteTextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   appearance: none;
-  width: 100%;
+  width: 95%;
   min-height: 100%;
   border: none;
   font-size: 24px;

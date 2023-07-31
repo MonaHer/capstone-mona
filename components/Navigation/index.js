@@ -14,7 +14,7 @@ export default function Navigation() {
           <StyledNavBarIcon
             path={mdiShimmer}
             size={2}
-            active={router.pathname === "/"}
+            $isActive={router.pathname === "/"}
           />
         </StyledNavBarLink>
 
@@ -22,7 +22,7 @@ export default function Navigation() {
           <StyledNavBarIcon
             path={mdiMagnify}
             size={2}
-            active={router.pathname === "/artworks-collection"}
+            $isActive={router.pathname === "/artworks-collection"}
           />
         </StyledNavBarLink>
 
@@ -30,15 +30,16 @@ export default function Navigation() {
           <StyledNavBarIcon
             path={mdiNotebookHeartOutline}
             size={2}
-            active={router.pathname === "/my-notes"}
+            $isActive={router.pathname === "/my-notes"}
           />
         </StyledNavBarLink>
         <StyledNavBarLink href={`/favorites`}>
           <StyledNavBarIcon
             path={mdiCardsHeart}
             size={2}
-            active={router.pathname === "/favorites"}
+            $isActive={router.pathname === "/favorites"}
           />
+          {console.log("active", typeof router.pathname === "/favorites")}
         </StyledNavBarLink>
       </StyledNavBar>
     </>

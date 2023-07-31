@@ -11,10 +11,10 @@ export const StyledList = styled.ul`
 `;
 
 export const StyledImage = styled(Image)`
-  height: 50%;
-  width: 50%;
+  height: 40%;
+  width: 40%;
   @media (max-width: 768px) {
-    height: 100%;
-    width: 100%;
+    height: 85%;
+    width: 85%;
   }
 `;
