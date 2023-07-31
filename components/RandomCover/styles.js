@@ -4,8 +4,8 @@ import { styled } from "styled-components";
 
 export const StyledImage = styled(Image)`
   @media (min-width: 769px) {
-    height: 30%;
-    width: 30%;
+    height: 40%;
+    width: 40%;
     margin: auto;
     display: block;
     margin-top: 7%;
@@ -36,7 +36,7 @@ export const TextOverlay = styled.div`
   @media (min-width: 769px) {
     position: absolute;
     width: 40%;
-    top: 60%;
+    top: 60vh;
     left: 50%;
     transform: translateX(-50%);
     color: whitesmoke;
@@ -48,7 +48,7 @@ export const TextOverlay = styled.div`
   @media (max-width: 768px) {
     position: absolute;
     width: 80%;
-    top: 75%;
+    top: 75vh;
     left: 50%;
     transform: translateX(-50%);
     color: whitesmoke;
@@ -72,7 +72,7 @@ export const StyledLink = styled(Link)`
 export const StyledLinkOverlay = styled.div`
   position: absolute;
   width: 100%;
-  bottom: 9%;
+  bottom: 5vh;
   left: 0;
   text-align: center;
 
@@ -80,6 +80,6 @@ export const StyledLinkOverlay = styled.div`
     position: static;
     display: flex;
     justify-content: center;
-    bottom: 9%;
+    bottom: 9vh;
   }
 `;
