@@ -1,13 +1,13 @@
 import Link from "next/link";
-import StyledNoResultsContainer from "../NoResultsContainer";
-import StyledPageTitle from "../StyledTitle";
+import NoResultsContainer from "../NoResultsContainer/index.js";
+import StyledPageTitle from "../StyledTitle/index.js";
 import {
   StyledList,
   StyledListItem,
-  StyledImageList,
-} from "../../components/StyledImageList";
+  StyledImage,
+} from "../StyledImageList/index.js";
 
-export default function FavoritesFunction(favorites, artworks) {
+export default function FavoritesFunction({ favorites, artworks }) {
   const favoriteArtworks = favorites.map((favorite) => {
     const artwork = artworks.items.find(
       (artwork) => artwork.id === favorite.favoriteID
@@ -26,7 +26,7 @@ export default function FavoritesFunction(favorites, artworks) {
           return (
             <StyledListItem key={favorite.favoriteID}>
               <Link href={`/artwork-info/${favorite.favoriteID}`}>
-                <StyledImageList
+                <StyledImage
                   src={favorite.artworkImage}
                   alt={favorite.artworkTitle}
                   width={200}
@@ -37,9 +37,9 @@ export default function FavoritesFunction(favorites, artworks) {
           );
         })}
         {favoriteArtworks.length === 0 && (
-          <StyledNoResultsContainer>
+          <NoResultsContainer>
             <p>No favorites yet.</p>
-          </StyledNoResultsContainer>
+          </NoResultsContainer>
         )}
       </StyledList>
     </>

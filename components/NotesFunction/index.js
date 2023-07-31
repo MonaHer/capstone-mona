@@ -10,7 +10,7 @@ import {
   StyledButtonWrapper,
   StyledNoteTextWrapper,
 } from "./styles";
-import StyledNoResultsContainer from "../NoResultsContainer";
+import NoResultsContainer from "../NoResultsContainer";
 import StyledPageTitle from "../StyledTitle";
 
 export default function MyNotesFunction({ notes, artworks }) {
@@ -69,9 +69,9 @@ export default function MyNotesFunction({ notes, artworks }) {
         })}
 
         {notesWithArtworkTitle.length === 0 && (
-          <StyledNoResultsContainer>
+          <NoResultsContainer>
             <p>No notes taken yet.</p>
-          </StyledNoResultsContainer>
+          </NoResultsContainer>
         )}
       </StyledList>
     </>

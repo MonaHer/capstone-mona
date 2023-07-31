@@ -1,4 +1,4 @@
-import FavoritesFunction from "@/components/FavoritesFunction";
+import FavoritesFunction from "../../components/FavoritesFunction";
 import Navigation from "@/components/Navigation";
 import Header from "@/components/Header";
 

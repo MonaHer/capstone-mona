@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function NoResultsContainer() {
+export default function NoResultsContainer({ children }) {
   return (
     <>
       <StyledNoResultsContainer>{children}</StyledNoResultsContainer>
@@ -8,7 +8,7 @@ export default function NoResultsContainer() {
   );
 }
 
-export const StyledNoResultsContainer = styled.div`
+const StyledNoResultsContainer = styled.div`
   text-align: center;
   margin-top: 140px;
   margin-bottom: 80px;
