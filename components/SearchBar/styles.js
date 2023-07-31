@@ -1,20 +1,5 @@
 import styled from "styled-components";
-import Image from "next/image";
 import Icon from "@mdi/react";
-
-export const StyledList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-`;
-
-export const StyledImage = styled(Image)`
-  height: 90%;
-  width: 90%;
-`;
-
-export const StyledListItem = styled.li`
-  text-align: center;
-`;
 
 export const StyledSearchInput = styled.input`
   position: absolute;

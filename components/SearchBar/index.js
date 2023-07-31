@@ -3,14 +3,12 @@ import Link from "next/link";
 import useLocalStorageState from "use-local-storage-state";
 import { mdiMagnify } from "@mdi/js";
 import {
-  StyledList,
-  StyledImage,
-  StyledListItem,
   StyledSearchInput,
   StyledMagnifyIcon,
   StyledEndofSearchContainer,
 } from "./styles";
 import NoResultsContainer from "../NoResultsContainer";
+import { StyledListItem, StyledList, StyledImage } from "../StyledImageList";
 
 export default function SearchBar({ artworks }) {
   const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm", {

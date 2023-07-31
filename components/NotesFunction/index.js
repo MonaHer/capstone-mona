@@ -3,7 +3,6 @@ import Icon from "@mdi/react";
 import { mdiEyeOffOutline } from "@mdi/js";
 import { mdiEyeOutline } from "@mdi/js";
 import {
-  StyledTitle,
   StyledList,
   StyledLink,
   StyledNoteText,
@@ -11,7 +10,8 @@ import {
   StyledButtonWrapper,
   StyledNoteTextWrapper,
 } from "./styles";
-import { StyledNoResultsContainer } from "../NoResultsContainer";
+import StyledNoResultsContainer from "../NoResultsContainer";
+import StyledPageTitle from "../StyledTitle";
 
 export default function MyNotesFunction({ notes, artworks }) {
   const [showNoteTextMap, setShowNoteTextMap] = useState({});
@@ -33,7 +33,7 @@ export default function MyNotesFunction({ notes, artworks }) {
 
   return (
     <>
-      <StyledTitle>My Notes</StyledTitle>
+      <StyledPageTitle>My Notes</StyledPageTitle>
 
       <StyledList>
         {notesWithArtworkTitle.map((note) => {

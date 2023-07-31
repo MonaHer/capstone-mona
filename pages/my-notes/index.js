@@ -7,7 +7,6 @@ export default function MyNotesPage({ notes, artworks }) {
     <>
       <Header />
       <MyNotesFunction artworks={artworks} notes={notes} />
-
       <Navigation />
     </>
   );

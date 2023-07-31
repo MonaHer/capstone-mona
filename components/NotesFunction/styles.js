@@ -1,14 +1,6 @@
 import styled from "styled-components";
 import Link from "next/link";
 
-export const StyledTitle = styled.h2`
-  border: 1px solid whitesmoke;
-  padding: 10px;
-  text-align: center;
-  margin-left: 5%;
-  margin-right: 5%;
-`;
-
 export const StyledList = styled.ul`
   list-style-type: none;
   margin: 15px;
