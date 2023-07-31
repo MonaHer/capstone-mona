@@ -1,5 +1,4 @@
 import { styled } from "styled-components";
-import Image from "next/image";
 import Icon from "@mdi/react";
 
 export const StyledLabelText = styled.p`
@@ -40,7 +39,7 @@ export const StyledTextArea = styled.textarea`
   font-family: var(--font);
 `;
 
-export const StyledButton = styled.button`
+export const StyledTextButton = styled.button`
   background-color: black;
   color: whitesmoke;
   border-color: pink;
@@ -49,15 +48,6 @@ export const StyledButton = styled.button`
 export const ArtworkContainer = styled.div`
   position: relative;
   margin: 20px;
-`;
-
-export const StyledImageInfo = styled(Image)`
-  height: 50%;
-  width: 50%;
-  @media (max-width: 768px) {
-    height: 100%;
-    width: 100%;
-  }
 `;
 
 export const BoldText = styled.p`

@@ -1,10 +1,16 @@
 import { useState } from "react";
-import styled from "styled-components";
 import Link from "next/link";
-import Image from "next/image";
 import useLocalStorageState from "use-local-storage-state";
-import Icon from "@mdi/react";
 import { mdiMagnify } from "@mdi/js";
+import {
+  StyledList,
+  StyledImage,
+  StyledListItem,
+  StyledSearchInput,
+  StyledMagnifyIcon,
+  StyledEndofSearchContainer,
+} from "./styles";
+import NoResultsContainer from "../NoResultsContainer";
 
 export default function SearchBar({ artworks }) {
   const [searchTerm, setSearchTerm] = useLocalStorageState("searchTerm", {
@@ -74,18 +80,16 @@ export default function SearchBar({ artworks }) {
                 ? filteredArtwork.titles[0].title
                 : "";
               return (
-                <>
-                  <StyledListItem key={id}>
-                    <Link href={`/artwork-info/${id}`}>
-                      <StyledImage
-                        src={image_thumbnail}
-                        alt={titleText}
-                        width={200}
-                        height={200}
-                      />
-                    </Link>
-                  </StyledListItem>
-                </>
+                <StyledListItem key={id}>
+                  <Link href={`/artwork-info/${id}`}>
+                    <StyledImage
+                      src={image_thumbnail}
+                      alt={titleText}
+                      width={200}
+                      height={200}
+                    />
+                  </Link>
+                </StyledListItem>
               );
             })}
           </StyledList>
@@ -99,70 +103,10 @@ export default function SearchBar({ artworks }) {
       )}
 
       {searchPerformed && searchResults.length === 0 && (
-        <StyledNoResultsContainer>
+        <NoResultsContainer>
           <p>No results found.</p>
-        </StyledNoResultsContainer>
+        </NoResultsContainer>
       )}
     </>
   );
 }
-
-const StyledList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-`;
-
-const StyledImage = styled(Image)`
-  height: 90%;
-  width: 90%;
-`;
-
-const StyledListItem = styled.li`
-  text-align: center;
-`;
-
-const StyledSearchInput = styled.input`
-  position: absolute;
-  background-color: transparent;
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  width: 80%;
-  height: 40px;
-  color: whitesmoke;
-  border: none;
-  padding: 10px;
-  margin: 20px auto;
-
-  &::placeholder {
-    color: whitesmoke;
-  }
-
-  &:focus {
-    outline: 2px solid hotpink;
-  }
-`;
-
-const StyledMagnifyIcon = styled(Icon)`
-  position: relative;
-  position: fixed;
-  left: 1580px;
-  top: 41px;
-  @media (max-width: 768px) {
-    position: relative;
-    position: fixed;
-    left: 300px;
-    top: 43px;
-  }
-`;
-
-const StyledNoResultsContainer = styled.div`
-  text-align: center;
-  margin-top: 140px;
-  margin-bottom: 80px;
-`;
-
-const StyledEndofSearchContainer = styled.div`
-  text-align: center;
-`;

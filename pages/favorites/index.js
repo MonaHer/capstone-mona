@@ -1,6 +1,10 @@
 import { styled } from "styled-components";
 import Link from "next/link";
-import Image from "next/image";
+import {
+  StyledList,
+  StyledListItem,
+  StyledImageList,
+} from "../../components/StyledImageList";
 import Navigation from "@/components/Navigation";
 import Header from "@/components/Header";
 
@@ -52,24 +56,6 @@ const StyledTitle = styled.h2`
   text-align: center;
   margin-left: 5%;
   margin-right: 5%;
-`;
-
-const StyledListItem = styled.li`
-  text-align: center;
-`;
-
-const StyledList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-`;
-
-const StyledImageList = styled(Image)`
-  height: 50%;
-  width: 50%;
-  @media (max-width: 768px) {
-    height: 90%;
-    width: 90%;
-  }
 `;
 
 const StyledNoResultsContainer = styled.div`

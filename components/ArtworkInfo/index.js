@@ -10,11 +10,12 @@ import {
   StyledIcon,
   StyledArtworkTitle,
   StyledTextArea,
-  StyledButton,
+  StyledTextButton,
   ArtworkContainer,
-  StyledImageInfo,
   BoldText,
 } from "./styles";
+
+import { StyledImage } from "../StyledImageList";
 
 export default function ArtworkInfo({
   artwork,
@@ -73,7 +74,7 @@ export default function ArtworkInfo({
     <>
       <Header />
       <ArtworkContainer>
-        <StyledImageInfo
+        <StyledImage
           src={image_thumbnail}
           alt={titleText}
           height={200}
@@ -105,9 +106,9 @@ export default function ArtworkInfo({
         <br />
         <br />
         {labelText.length > 0 && (
-          <StyledButton onClick={toggleLabelText}>
+          <StyledTextButton onClick={toggleLabelText}>
             {isLabelTextVisible ? "Hide Text" : "Show Text"}
-          </StyledButton>
+          </StyledTextButton>
         )}
         {isLabelTextVisible && labelText.length > 0 && (
           <StyledLabelText>{labelText}</StyledLabelText>

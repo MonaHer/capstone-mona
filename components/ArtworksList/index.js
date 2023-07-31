@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import styled from "styled-components";
+import { StyledList, StyledImage, StyledListItem } from "../StyledImageList";
 
 export default function ArtworksList({ artworks }) {
   return (
@@ -10,7 +9,7 @@ export default function ArtworksList({ artworks }) {
         return (
           <StyledListItem key={id}>
             <Link href={`/artwork-info/${id}`}>
-              <StyledImageList
+              <StyledImage
                 src={image_thumbnail}
                 alt={titleText}
                 width={200}
@@ -23,22 +22,3 @@ export default function ArtworksList({ artworks }) {
     </StyledList>
   );
 }
-
-const StyledList = styled.ul`
-  list-style-type: none;
-  padding: 0;
-`;
-
-const StyledImageList = styled(Image)`
-  height: 50%;
-  width: 50%;
-
-  @media (max-width: 768px) {
-    height: 90%;
-    width: 90%;
-  }
-`;
-
-const StyledListItem = styled.li`
-  text-align: center;
-`;
