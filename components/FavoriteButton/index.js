@@ -8,9 +8,9 @@ export default function FavoriteButton({ isFavored, onClick }) {
     <>
       <StyledButton type="button" onClick={onClick}>
         {isFavored ? (
-          <Icon path={mdiCardsHeart} size={1} color="hotpink" />
+          <Icon path={mdiCardsHeart} size={1.2} color="hotpink" />
         ) : (
-          <Icon path={mdiHeartOutline} size={1} color="hotpink" />
+          <Icon path={mdiHeartOutline} size={1.2} color="hotpink" />
         )}
       </StyledButton>
     </>
