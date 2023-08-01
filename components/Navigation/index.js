@@ -39,7 +39,6 @@ export default function Navigation() {
             size={2}
             $isActive={router.pathname === "/favorites"}
           />
-          {console.log("active", typeof router.pathname === "/favorites")}
         </StyledNavBarLink>
       </StyledNavBar>
     </>
