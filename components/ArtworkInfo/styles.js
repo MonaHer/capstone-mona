@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
-import Image from "next/image";
 import Icon from "@mdi/react";
+import Image from "next/image";
 
 export const StyledLabelText = styled.p`
   text-align: justify;
@@ -9,6 +9,15 @@ export const StyledLabelText = styled.p`
 
 export const StyledIcon = styled(Icon)`
   color: whitesmoke;
+`;
+
+export const StyledImageInfo = styled(Image)`
+  height: 30%;
+  width: 30%;
+  @media (max-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export const StyledArtworkTitle = styled.p`
@@ -40,10 +49,10 @@ export const StyledTextArea = styled.textarea`
   font-family: var(--font);
 `;
 
-export const StyledButton = styled.button`
+export const StyledTextButton = styled.button`
   background-color: black;
   color: whitesmoke;
-  border-color: hotpink;
+  border-color: pink;
 `;
 
 export const ArtworkContainer = styled.div`
@@ -51,11 +60,8 @@ export const ArtworkContainer = styled.div`
   margin: 20px;
 `;
 
-export const StyledImageInfo = styled(Image)`
-  height: 50%;
-  width: 50%;
-  @media (max-width: 768px) {
-    height: 100%;
-    width: 100%;
-  }
+export const BoldText = styled.p`
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+  font-size: 24px;
 `;

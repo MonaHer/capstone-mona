@@ -19,7 +19,7 @@ export default createGlobalStyle`
     
     font-family: ${roboto.style.fontFamily};
     position: relative;
-    margin: 0px;
+    margin: 0;
     background-color: black;
     color: whitesmoke;
     

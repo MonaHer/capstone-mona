@@ -63,7 +63,7 @@ export default function App({ Component, pageProps }) {
           note.artworkID === artworkID ? { ...note, text } : note
         );
       }
-      return [...notes, { artworkID, text }];
+      return [{ artworkID, text }, ...notes];
     });
   }
 
@@ -77,7 +77,7 @@ export default function App({ Component, pageProps }) {
           (favorite) => favorite.favoriteID !== favoriteID
         );
       }
-      return [...favorites, { favoriteID }];
+      return [{ favoriteID }, ...favorites];
     });
   }
 

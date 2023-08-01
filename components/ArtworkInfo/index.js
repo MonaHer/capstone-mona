@@ -1,16 +1,18 @@
 import { useState } from "react";
 import Navigation from "../Navigation";
+import Header from "../Header";
 import { mdiMapMarkerRadiusOutline } from "@mdi/js";
 import { mdiRulerSquare } from "@mdi/js";
-import { mdiDrawPen } from "@mdi/js";
 import FavoriteButton from "../FavoriteButton";
+
 import {
   StyledLabelText,
   StyledIcon,
   StyledArtworkTitle,
   StyledTextArea,
-  StyledButton,
+  StyledTextButton,
   ArtworkContainer,
+  BoldText,
   StyledImageInfo,
 } from "./styles";
 
@@ -69,6 +71,7 @@ export default function ArtworkInfo({
 
   return (
     <>
+      <Header />
       <ArtworkContainer>
         <StyledImageInfo
           src={image_thumbnail}
@@ -102,17 +105,17 @@ export default function ArtworkInfo({
         <br />
         <br />
         {labelText.length > 0 && (
-          <StyledButton onClick={toggleLabelText}>
+          <StyledTextButton onClick={toggleLabelText}>
             {isLabelTextVisible ? "Hide Text" : "Show Text"}
-          </StyledButton>
+          </StyledTextButton>
         )}
         {isLabelTextVisible && labelText.length > 0 && (
           <StyledLabelText>{labelText}</StyledLabelText>
         )}
         <br />
         <br />
-        <label htmlFor="personal-notes">
-          <StyledIcon path={mdiDrawPen} size={1.5} />
+        <label htmlFor="personal-notes" style={{ fontSize: "19px" }}>
+          <BoldText>My Notes</BoldText>
         </label>
 
         <StyledTextArea

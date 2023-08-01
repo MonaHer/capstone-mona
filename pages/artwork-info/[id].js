@@ -24,7 +24,6 @@ export default function ArtworkInfoPage({
 
   return (
     <>
-      <h1>ArtworkInfoPage</h1>
       <ArtworkInfo
         artwork={currentArtworkInfo}
         note={currentArtworkNote}
