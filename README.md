@@ -1,37 +1,27 @@
-# New Next Project
+# SMK Notes
 
-This project was created from the neue fische `next` template.
+![Screenshots](./public/images/Readme_Screenshots.png)
 
-You can [🔗 **use this template on CodeSandbox**](https://codesandbox.io/p/sandbox/github/neuefische/web-exercises/tree/main/templates/next?file=/README.md) or locally by running this command in your Terminal:
+## Capstone Project of the Web Development bootcamp at neuefische
 
-```bash
-npx -y ghcd@latest neuefische/web-exercises/tree/main/templates/next my-app -i
-```
+'SMK Notes' utilizes the API of the National Gallery of Denmark (SMK). The app enables visitors to take notes on artworks during or before/after their museum visit, creating a digital notebook for a lasting museum experience.
 
-## Development
+### Deployment
 
-### Local Development
+Check out the [latest version](https://smk-notes.vercel.app) of SMK Notes on Vercel
 
-To work locally, please install the dependencies using `npm i` first.
+### Tech Stack
 
-Run `npm run dev` to start a development server and open the displayed URL in a browser.
+- React
+- Next.js
+- Styled Components
+- React Testing Library
+- Jest
+- SMK API
+- useSWR
 
-Use `npm run test` to run the tests.
+### Project Setup
 
-### CodeSandbox Cloud
-
-Select the "Preview: 3000" tab to view this project.
-
-Select the "Tests: logs" tab to view the tests.
-
-> The `npm run dev` and `npm run test` scripts run automatically.
-
-### Scripts
-
-You can use the following commands:
-
-- `npm run dev` to start a development server
-- `npm run build` to build the project
-- `npm run start` to start a production server
-- `npm run test` to run the tests
-- `npm run lint` to run the linter
+- Clone this repository
+- Install all dependencies using `npm install`
+- Run app in development mode using `npm run dev`, and open [http://localhost:3000/](http://localhost:3000/)
